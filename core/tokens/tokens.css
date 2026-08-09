@@ -1,4 +1,4 @@
-/* Plasma Pixel — design tokens (generated from tokens.json) */
+/* Plasma Pixel tokens — GENERATED from tokens.json. Do not edit. */
 :root {
   --pp-void: #05000E;
   --pp-panel: #0B0018;
@@ -23,15 +23,17 @@
   --pp-radius-popover: 12px;
   --pp-border-chrome: 1px solid var(--pp-border);
 
-  --pp-speed: 10;          /* px per second — never change */
-  --pp-tile-ratio: 1.6;    /* tile height = 1.6 x block height */
+  --pp-speed: 10;
+  --pp-tile-ratio: 1.6;
   --pp-ghost-cycle: 2.1s;
+  --pp-ghost-opacity: 0.75;
+  --pp-skew: -2.5deg;
   --pp-skew-cycle: 3.4s;
   --pp-frame-tile: 58px;
   --pp-frame-duration: 5.8s;
 }
 
-/* One keyframe per distinct tile height. Each translates exactly -T. */
+/* One keyframe per distinct tile height. Each travels exactly -T. */
 @keyframes pp-drift-30 { to { background-position: 0 -30px; } }
 @keyframes pp-drift-32 { to { background-position: 0 -32px; } }
 @keyframes pp-drift-36 { to { background-position: 0 -36px; } }
@@ -45,11 +47,12 @@
                       50%     { transform: translateX(calc(-1 * var(--pp-g, 1px))); } }
 
 @keyframes pp-skew { 0%,100% { transform: skewX(0deg) translateX(0); }
-                     50%     { transform: skewX(-2.5deg) translateX(0.5px); } }
+                     50%     { transform: skewX(var(--pp-skew)) translateX(0.5px); } }
 
+/* Kill switch. Off, never dimmed. */
 @media (prefers-reduced-motion: reduce) {
-  /* Kill switch: no gradient, no ghosts, no skew. Flat cyan. */
-  [data-pp-mix] * { animation: none !important; background-image: none !important;
-                    -webkit-text-fill-color: var(--pp-cyan) !important; }
-  [data-pp-mix] [data-pp-ghost] { display: none !important; }
+  [data-pp-mix] * { animation: none !important; }
+  [data-pp-mix] [data-pp-fill] { background-image: none !important;
+    -webkit-text-fill-color: var(--pp-cyan) !important; color: var(--pp-cyan) !important; }
+  [data-pp-mix] [data-pp-ghost], [data-pp-mix] [data-pp-texture] { display: none !important; }
 }

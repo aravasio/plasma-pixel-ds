@@ -1,0 +1,126 @@
+/* Plasma Pixel — OD package tokens. GENERATED from tokens.json. Do not edit.
+ *
+ * Maps the design system into the Open Design shared token contract
+ * (A1-identity / A1-structure / A2 / B-slot) plus brand extensions
+ * (C-layer, --pp-*). Agents: paste the :root block verbatim into the
+ * first <style> of an artifact, then resolve every value via var(--*).
+ *
+ * What this file cannot express, DESIGN.md does (the Mix, shared-field
+ * arithmetic, densities, platform rules). Both must stay synchronized.
+ */
+:root {
+  --bg: #05000E;
+  --surface: #0B0018;
+  --surface-warm: var(--surface);
+  --fg: #E7E2F5;
+  --fg-2: var(--fg);
+  --muted: #8E86A8;
+  --meta: #5E5580;
+  --border: #2A1F44;
+  --border-soft: #3A2C5E;
+  --accent: #7FF9FF;
+  --accent-on: #05000E;
+  --accent-hover: color-mix(in oklab, #7FF9FF, black 8%);
+  --accent-active: color-mix(in oklab, #7FF9FF, black 14%);
+  --success: #37F5A0;
+  --warn: #FFE600;
+  --danger: #FF2D6F;
+  --font-display: "Silkscreen", monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 15px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  --text-2xl: 34px;
+  --text-3xl: 46px;
+  --text-4xl: 64px;
+  --leading-body: 1.6;
+  --leading-tight: 1;
+  --tracking-display: 0.06em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 96px;
+  --section-y-tablet: 64px;
+  --section-y-phone: 48px;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 4px 4px 0 var(--pp-magenta);
+  --focus-ring: 0 0 0 2px var(--accent);
+  --motion-fast: 120ms;
+  --motion-base: 280ms;
+  --ease-standard: linear;
+  --container-max: 1200px;
+  --container-gutter-desktop: 64px;
+  --container-gutter-tablet: 48px;
+  --container-gutter-phone: 24px;
+
+  --pp-magenta: #FF2D6F;
+  --pp-violet: #A56BFF;
+  --pp-ultra-action: #FF7A1A;
+  --pp-gradient: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);
+  --pp-dither: repeating-conic-gradient(rgba(0,0,0,.60) 0% 25%, transparent 0% 50%);
+  --pp-dither-size: 4px 4px;
+  --pp-plasma: radial-gradient(ellipse at 25% -25%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 60%), radial-gradient(ellipse at 75% -25%, color-mix(in oklab, var(--pp-magenta) 35%, transparent), transparent 60%), radial-gradient(ellipse at 50% 125%, color-mix(in oklab, var(--pp-violet) 30%, transparent), transparent 60%);
+  --pp-speed: 10;
+  --pp-tile-ratio: 1.6;
+  --pp-min-duration: 3s;
+  --pp-ghost-cycle: 2.1s;
+  --pp-ghost-phase: -1.05s;
+  --pp-ghost-opacity: 0.75;
+  --pp-skew: -2.5deg;
+  --pp-skew-cycle: 3.4s;
+  --pp-frame-tile: 58px;
+  --pp-frame-duration: 5.8s;
+  --pp-live-dot: 1.4s;
+}
+
+/* One keyframe per distinct tile height; each travels exactly -T. */
+@keyframes pp-drift-30 { to { background-position: 0 -30px; } }
+@keyframes pp-drift-32 { to { background-position: 0 -32px; } }
+@keyframes pp-drift-36 { to { background-position: 0 -36px; } }
+@keyframes pp-drift-42 { to { background-position: 0 -42px; } }
+@keyframes pp-drift-45 { to { background-position: 0 -45px; } }
+@keyframes pp-drift-48 { to { background-position: 0 -48px; } }
+@keyframes pp-drift-58 { to { background-position: 0 -58px; } }
+@keyframes pp-drift-72 { to { background-position: 0 -72px; } }
+
+@keyframes pp-ghost { 0%,100% { transform: translateX(var(--pp-g, 1px)); }
+                      50%     { transform: translateX(calc(-1 * var(--pp-g, 1px))); } }
+
+@keyframes pp-skew  { 0%,100% { transform: skewX(0deg) translateX(0); }
+                      50%     { transform: skewX(var(--pp-skew)) translateX(0.5px); } }
+
+@keyframes pp-steps { 50% { opacity: 0; } }
+
+/* Frame variant — the gradient on a 2px-padded container, solid child inside. */
+.pp-frame {
+  padding: 2px;
+  background: var(--pp-gradient);
+  background-size: 100% var(--pp-frame-tile);
+  animation: pp-frame-drift var(--pp-frame-duration) linear infinite;
+  box-shadow: var(--elev-raised);
+}
+@keyframes pp-frame-drift { to { background-position: 0 calc(-1 * var(--pp-frame-tile)); } }
+
+/* Kill switch — off, never dimmed. */
+@media (prefers-reduced-motion: reduce) {
+  [data-pp-mix], [data-pp-mix] * { animation: none !important; }
+  [data-pp-mix] [data-pp-fill] {
+    background-image: none !important;
+    -webkit-text-fill-color: var(--accent) !important;
+    color: var(--accent) !important;
+  }
+  [data-pp-mix] [data-pp-ghost], [data-pp-mix] [data-pp-texture] { display: none !important; }
+}

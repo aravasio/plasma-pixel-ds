@@ -1,0 +1,18 @@
+@theme {
+  --color-bg: #05000E;
+  --color-surface: #0B0018;
+  --color-fg: #E7E2F5;
+  --color-fg-2: var(--fg);
+  --color-muted: #8E86A8;
+  --color-meta: #5E5580;
+  --color-border: #2A1F44;
+  --color-border-soft: #3A2C5E;
+  --color-accent: #7FF9FF;
+  --color-accent-on: #05000E;
+  --color-success: #37F5A0;
+  --color-warn: #FFE600;
+  --color-danger: #FF2D6F;
+  --font-display: "Silkscreen", monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}

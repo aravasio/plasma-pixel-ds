@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plasma Pixel — reference components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────────
+   Plasma Pixel fixture. Every visible value
+   comes from this package's tokens.css — paste
+   its :root block here in your artifacts and
+   resolve everything through var(--*).
+   Radius is 0, shadows are hard, everything is
+   still except the one Mixed element per screen.
+   ────────────────────────────────────────────── */
+:root {
+  /* surface */
+  --bg: #05000E;
+  --surface: #0B0018;
+  --surface-warm: var(--surface);
+  /* foreground */
+  --fg: #E7E2F5;
+  --fg-2: var(--fg);
+  --muted: #8E86A8;
+  --meta: #5E5580;
+  /* border */
+  --border: #2A1F44;
+  --border-soft: #3A2C5E;
+  /* accent */
+  --accent: #7FF9FF;
+  --accent-on: #05000E;
+  --accent-hover: color-mix(in oklab, #7FF9FF, black 8%);
+  --accent-active: color-mix(in oklab, #7FF9FF, black 14%);
+  /* semantic */
+  --success: #37F5A0;
+  --warn: #FFE600;
+  --danger: #FF2D6F;
+  /* fonts */
+  --font-display: "Silkscreen", monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* type scale */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 15px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  --text-2xl: 34px;
+  --text-3xl: 46px;
+  --text-4xl: 64px;
+  --leading-body: 1.6;
+  --leading-tight: 1;
+  --tracking-display: 0.06em;
+  /* spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  /* section */
+  --section-y-desktop: 96px;
+  --section-y-tablet: 64px;
+  --section-y-phone: 48px;
+  /* radius — zero, always */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+  /* elevation */
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 4px 4px 0 var(--pp-magenta);
+  /* focus */
+  --focus-ring: 0 0 0 2px var(--accent);
+  /* motion */
+  --motion-fast: 120ms;
+  --motion-base: 280ms;
+  --ease-standard: linear;
+  /* layout */
+  --container-max: 1200px;
+  --container-gutter-desktop: 64px;
+  --container-gutter-tablet: 48px;
+  --container-gutter-phone: 24px;
+  /* pp-* extensions */
+  --pp-magenta: #FF2D6F;
+  --pp-violet: #A56BFF;
+  --pp-ultra-action: #FF7A1A;
+  --pp-gradient: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);
+  --pp-dither: repeating-conic-gradient(rgba(0,0,0,.60) 0% 25%, transparent 0% 50%);
+  --pp-dither-size: 4px 4px;
+  --pp-plasma: radial-gradient(ellipse at 25% -25%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 60%), radial-gradient(ellipse at 75% -25%, color-mix(in oklab, var(--pp-magenta) 35%, transparent), transparent 60%), radial-gradient(ellipse at 50% 125%, color-mix(in oklab, var(--pp-violet) 30%, transparent), transparent 60%);
+  --pp-speed: 10;
+  --pp-tile-ratio: 1.6;
+  --pp-min-duration: 3s;
+  --pp-ghost-cycle: 2.1s;
+  --pp-ghost-phase: -1.05s;
+  --pp-ghost-opacity: 0.75;
+  --pp-skew: -2.5deg;
+  --pp-skew-cycle: 3.4s;
+  --pp-frame-tile: 58px;
+  --pp-frame-duration: 5.8s;
+  --pp-live-dot: 1.4s;
+}
+
+* { box-sizing: border-box; border-radius: 0; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  padding: var(--space-12);
+}
+section { margin: 0 0 var(--space-12); }
+.micro-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--warn);
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.hairline { border-top: 1px solid var(--border); margin: var(--space-12) 0; }
+
+/* ─── The Mix — hero metric (the one mechanism, full three layers) ─── */
+.mix {
+  position: relative;
+  width: fit-content;
+  animation: pp-skew var(--pp-skew-cycle) ease-in-out infinite;
+}
+.mix > * { font-family: var(--font-display); font-weight: 700; font-size: var(--text-3xl);
+  line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+.mix-ghost { position: absolute; inset: 0; color: var(--pp-magenta); opacity: var(--pp-ghost-opacity);
+  animation: pp-ghost var(--pp-ghost-cycle) ease-in-out infinite; }
+.mix-ghost.b { color: var(--accent); animation-delay: var(--pp-ghost-phase); }
+.mix-fill {
+  background: var(--pp-gradient);
+  background-size: 100% 72px;               /* T = 1.6 x 46 = 73.6 -> round 72 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: pp-drift-72 7.2s linear infinite; /* D = T / 10 */
+}
+@keyframes pp-drift-72 { to { background-position: 0 -72px; } }
+
+/* ─── Buttons ─── */
+.btn { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm);
+  text-transform: uppercase; letter-spacing: .08em; padding: 9px 14px; border: 0;
+  cursor: pointer; transition: transform var(--motion-fast) var(--ease-standard),
+  box-shadow var(--motion-fast) var(--ease-standard); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn-primary { background: var(--surface); color: #fff; box-shadow: var(--elev-raised); }
+.btn-primary span { background: var(--pp-gradient); background-size: 100% var(--pp-frame-tile);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.btn-primary:active { box-shadow: none; transform: translate(4px, 4px); }
+.btn-secondary { background: transparent; color: var(--fg);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 42%, transparent); }
+.btn-secondary:active { transform: translate(2px, 2px); }
+.btn-loud { background: var(--warn); color: var(--bg); box-shadow: var(--elev-raised); }
+.btn-loud:active { box-shadow: none; transform: translate(4px, 4px); }
+.btn-disabled { background: transparent; color: var(--meta);
+  box-shadow: 0 0 0 1px var(--border-soft); cursor: not-allowed; }
+
+/* ─── Inputs ─── */
+.input { background: var(--surface); color: var(--fg); font-family: var(--font-body);
+  font-size: var(--text-base); padding: 7px 12px; border: 1px solid var(--border); width: 100%;
+  transition: border-color var(--motion-fast) var(--ease-standard); }
+.input:focus { outline: none; border: 2px solid var(--accent); padding: 6px 11px; }
+.input-error { border: 2px solid var(--danger); padding: 6px 11px; }
+.input-error-msg { color: var(--danger); font-size: var(--text-sm); margin-top: var(--space-1); }
+.field-label { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xs);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: var(--space-2); }
+
+/* ─── Toggle ─── */
+.toggle { display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; }
+.toggle-track { width: 30px; height: 14px; background: var(--surface); border: 1px solid var(--border); }
+.toggle input { position: absolute; opacity: 0; }
+.toggle input:checked + .toggle-track { background: var(--accent); border-color: var(--accent); }
+.toggle-knob { width: 12px; height: 12px; background: var(--bg); margin: 1px; }
+.toggle input:checked + .toggle-track .toggle-knob { transform: translateX(14px); }
+.toggle-knob { transition: transform var(--motion-fast) var(--ease-standard); }
+.toggle-label { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm);
+  text-transform: uppercase; letter-spacing: .08em; color: var(--fg); }
+
+/* ─── Segmented control ─── */
+.segmented { display: inline-flex; border: 1px solid var(--border); }
+.segmented button { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xs);
+  text-transform: uppercase; letter-spacing: .1em; color: var(--meta); background: transparent;
+  border: 0; padding: 7px 14px; cursor: pointer; }
+.segmented button.active { background: var(--warn); color: var(--bg); }
+
+/* ─── Cards ─── */
+.card { background: var(--surface); box-shadow: 0 0 0 1px var(--border); padding: var(--space-6); }
+.card h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg);
+  text-transform: uppercase; letter-spacing: var(--tracking-display); margin-bottom: var(--space-2); }
+.card-hierarchy { box-shadow: 0 0 0 2px var(--accent),
+  4px 4px 0 color-mix(in oklab, var(--accent) 27%, transparent); }
+.card-featured { box-shadow: var(--elev-raised); padding: 0; }
+.card-featured .inner { background: var(--bg); padding: var(--space-6); }
+
+/* ─── Table ─── */
+.table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.table th { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xs);
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+  text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+.table td { padding: 8px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.table tbody tr:hover { background: var(--surface); }
+
+/* ─── Navigation ─── */
+.nav { display: flex; gap: 0; border-bottom: 1px solid var(--border); }
+.nav a { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm);
+  text-transform: uppercase; letter-spacing: .08em; color: var(--muted); text-decoration: none;
+  padding: 9px 12px; border-left: 2px solid transparent; }
+.nav a.active { color: var(--fg); border-left: 2px solid var(--accent); }
+.nav a:hover { color: var(--fg); }
+
+/* ─── Status dot — square, steps blink, never a fade ─── */
+.dot { width: 8px; height: 8px; display: inline-block; }
+.dot-live { background: var(--accent); animation: pp-steps var(--pp-live-dot) steps(2) infinite; }
+.dot-warn { background: var(--warn); }
+.dot-danger { background: var(--danger); }
+@keyframes pp-steps { 50% { opacity: 0; } }
+
+/* ─── Bar chart — shared field: one gradient sheet across the group ─── */
+.bars { display: flex; align-items: flex-end; gap: var(--space-2); height: 120px; }
+.bar { width: 16px; background: var(--pp-gradient); background-size: 100% 32px;
+  animation: pp-drift-32 3.2s linear infinite; }
+.bar.empty { background: color-mix(in oklab, #fff 18%, transparent); animation: none; }
+@keyframes pp-drift-32 { to { background-position: 0 -32px; } }
+
+/* ─── Frame variant — drifting 2px gradient border, solid interior ─── */
+.pp-frame { padding: 2px; background: var(--pp-gradient); background-size: 100% var(--pp-frame-tile);
+  animation: pp-frame-drift var(--pp-frame-duration) linear infinite;
+  box-shadow: var(--elev-raised); width: fit-content; }
+.pp-frame .inner { background: var(--surface); padding: var(--space-4) var(--space-6); }
+@keyframes pp-frame-drift { to { background-position: 0 calc(-1 * var(--pp-frame-tile)); } }
+
+/* ─── Kill switch: reduce-motion -> flat cyan, nothing runs ─── */
+@media (prefers-reduced-motion: reduce) {
+  [data-pp-mix], [data-pp-mix] * { animation: none !important; }
+  [data-pp-mix] [data-pp-fill] { background-image: none !important;
+    -webkit-text-fill-color: var(--accent) !important; color: var(--accent) !important; }
+  [data-pp-mix] [data-pp-ghost] { display: none !important; }
+  .bar, .dot-live { animation: none !important; }
+}
+
+/* ─── Selection: cyan on void — never browser blue ─── */
+::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<section>
+  <span class="micro-label">The Mix — one hero per screen</span>
+  <div data-pp-mix class="mix">
+    <span class="mix-fill" data-pp-fill>12,745.08</span>
+    <span class="mix-ghost a" data-pp-ghost style="--pp-g: 3px">12,745.08</span>
+    <span class="mix-ghost b" data-pp-ghost style="--pp-g: 3px">12,745.08</span>
+  </div>
+</section>
+
+<div class="hairline"></div>
+
+<section>
+  <span class="micro-label">Buttons</span>
+  <button class="btn btn-primary"><span>Drift frame</span></button>
+  <button class="btn btn-secondary">Secondary</button>
+  <button class="btn btn-loud">Loud</button>
+  <button class="btn btn-disabled" disabled>Disabled</button>
+</section>
+
+<section>
+  <span class="micro-label">Inputs</span>
+  <label>
+    <span class="field-label">Balance</span>
+    <input class="input" placeholder="0.00">
+  </label>
+  <label>
+    <span class="field-label">Key (error)</span>
+    <input class="input input-error" value="2x-9" aria-invalid="true">
+    <span class="input-error-msg">HEX > key length</span>
+  </label>
+</section>
+
+<section>
+  <span class="micro-label">Toggle &amp; segments</span>
+  <label class="toggle">
+    <input type="checkbox">
+    <span class="toggle-track"><span class="toggle-knob"></span></span>
+    <span class="toggle-label">Alerts</span>
+  </label>
+  <br><br>
+  <div class="segmented" role="tablist">
+    <button>Day</button>
+    <button class="active">Week</button>
+    <button>Month</button>
+  </div>
+</section>
+
+<section>
+  <span class="micro-label">Cards</span>
+  <div class="card">
+    <h3>Chrome card</h3>
+    <p>Prose in IBM Plex Mono at 15px, line-height 1.6, textPrimary. The identity turns off for sentences; the Mix never touches this paragraph.</p>
+  </div>
+  <br>
+  <div class="card card-hierarchy">
+    <h3>Hierarchy card</h3>
+    <p>2px cyan border, hard shadow at 25–30% of the same colour.</p>
+  </div>
+  <br>
+  <div class="card-featured pp-frame">
+    <div class="inner">
+      <h3 style="font-family:var(--font-display);text-transform:uppercase;letter-spacing:.06em;font-size:var(--text-lg)">Featured</h3>
+      <p style="font-size:var(--text-sm)">The border itself drifts. At most one of these per viewport.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="micro-label">Table</span>
+  <table class="table">
+    <thead><tr><th>Token</th><th>Value</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td>void</td><td>#05000E</td><td><span class="dot dot-live"></span> live</td></tr>
+      <tr><td>border</td><td>#2A1F44</td><td><span class="dot dot-warn"></span> caution</td></tr>
+      <tr><td>magenta</td><td>#FF2D6F</td><td><span class="dot dot-danger"></span> urgent</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <span class="micro-label">Navigation</span>
+  <nav class="nav">
+    <a href="#" class="active">Balance</a>
+    <a href="#">Spend</a>
+    <a href="#">Rules</a>
+    <a href="#">Settings</a>
+  </nav>
+</section>
+
+<section>
+  <span class="micro-label">Bar chart — shared field</span>
+  <div class="bars" aria-label="14 day balance">
+    <div class="bar empty" aria-hidden="true"></div>
+    <div class="bar" style="height:20px;animation-delay:-.4s"></div>
+    <div class="bar" style="height:45px;animation-delay:-1.1s"></div>
+    <div class="bar" style="height:32px;animation-delay:-2.4s"></div>
+    <div class="bar" style="height:70px;animation-delay:-1.8s"></div>
+    <div class="bar" style="height:56px;animation-delay:0s"></div>
+    <div class="bar" style="height:90px;animation-delay:-3s"></div>
+    <div class="bar" style="height:38px;animation-delay:-1.8s"></div>
+    <div class="bar" style="height:64px;animation-delay:-2.4s"></div>
+    <div class="bar" style="height:24px;animation-delay:-.8s"></div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "brandId": "plasma-pixel",
+  "source": {
+    "componentsHtml": "components.html",
+    "tokensCss": "tokens.css"
+  },
+  "fixture": {
+    "title": "Plasma Pixel — reference components",
+    "description": "Reference fixture for design-systems/plasma-pixel. Every visible value comes from tokens.css; the page itself follows the identity — near-black surfaces, radius 0, hard offset magenta shadows, Silkscreen caps labels, IBM Plex Mono prose, exactly one Mixed hero (3 layers, skew), a shared-field bar chart, and the reduce-motion kill switch in the same stylesheet.",
+    "styleBlockCount": 1,
+    "selectorCount": 50,
+    "classCount": 36,
+    "elementCount": 88
+  },
+  "tokens": {
+    "declared": [
+      "--bg",
+      "--surface",
+      "--surface-warm",
+      "--fg",
+      "--fg-2",
+      "--muted",
+      "--meta",
+      "--border",
+      "--border-soft",
+      "--accent",
+      "--accent-on",
+      "--accent-hover",
+      "--accent-active",
+      "--success",
+      "--warn",
+      "--danger",
+      "--font-display",
+      "--font-body",
+      "--font-mono",
+      "--text-xs",
+      "--text-sm",
+      "--text-base",
+      "--text-lg",
+      "--text-xl",
+      "--text-2xl",
+      "--text-3xl",
+      "--text-4xl",
+      "--leading-body",
+      "--leading-tight",
+      "--tracking-display",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--space-12",
+      "--section-y-desktop",
+      "--section-y-tablet",
+      "--section-y-phone",
+      "--radius-sm",
+      "--radius-md",
+      "--radius-lg",
+      "--radius-pill",
+      "--elev-flat",
+      "--elev-ring",
+      "--elev-raised",
+      "--focus-ring",
+      "--motion-fast",
+      "--motion-base",
+      "--ease-standard",
+      "--container-max",
+      "--container-gutter-desktop",
+      "--container-gutter-tablet",
+      "--container-gutter-phone",
+      "--pp-magenta",
+      "--pp-violet",
+      "--pp-ultra-action",
+      "--pp-gradient",
+      "--pp-dither",
+      "--pp-dither-size",
+      "--pp-plasma",
+      "--pp-speed",
+      "--pp-tile-ratio",
+      "--pp-min-duration",
+      "--pp-ghost-cycle",
+      "--pp-ghost-phase",
+      "--pp-ghost-opacity",
+      "--pp-skew",
+      "--pp-skew-cycle",
+      "--pp-frame-tile",
+      "--pp-frame-duration",
+      "--pp-live-dot"
+    ],
+    "referenced": [
+      "--surface",
+      "--fg",
+      "--border",
+      "--pp-magenta",
+      "--accent",
+      "--pp-violet",
+      "--bg",
+      "--font-body",
+      "--text-base",
+      "--leading-body",
+      "--space-12",
+      "--font-display",
+      "--text-xs",
+      "--warn",
+      "--space-3",
+      "--pp-skew-cycle",
+      "--text-3xl",
+      "--leading-tight",
+      "--tracking-display",
+      "--pp-ghost-opacity",
+      "--pp-ghost-cycle",
+      "--pp-ghost-phase",
+      "--pp-gradient",
+      "--text-sm",
+      "--motion-fast",
+      "--ease-standard",
+      "--elev-raised",
+      "--pp-frame-tile",
+      "--meta",
+      "--border-soft",
+      "--danger",
+      "--space-1",
+      "--muted",
+      "--space-2",
+      "--space-6",
+      "--text-lg",
+      "--pp-live-dot",
+      "--pp-frame-duration",
+      "--space-4"
+    ],
+    "missing": []
+  },
+  "components": [
+    {
+      "id": "mix-hero",
+      "name": "Mix hero metric",
+      "selectors": [
+        "mix",
+        "mix-fill",
+        "mix-ghost",
+        "mix-ghost.b"
+      ]
+    },
+    {
+      "id": "buttons",
+      "name": "Buttons",
+      "selectors": [
+        "btn",
+        "btn-primary",
+        "btn-secondary",
+        "btn-loud",
+        "btn-disabled"
+      ]
+    },
+    {
+      "id": "inputs",
+      "name": "Inputs",
+      "selectors": [
+        "input",
+        "input-error",
+        "input-error-msg",
+        "field-label"
+      ]
+    },
+    {
+      "id": "toggle",
+      "name": "Toggle",
+      "selectors": [
+        "toggle",
+        "toggle-track",
+        "toggle-knob",
+        "toggle-label"
+      ]
+    },
+    {
+      "id": "segmented",
+      "name": "Segmented control",
+      "selectors": [
+        "segmented",
+        "segmented button.active"
+      ]
+    },
+    {
+      "id": "cards",
+      "name": "Cards",
+      "selectors": [
+        "card",
+        "card-hierarchy",
+        "card-featured",
+        "pp-frame"
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "selectors": [
+        "table",
+        "table th",
+        "table td",
+        "table tbody tr:hover"
+      ]
+    },
+    {
+      "id": "nav",
+      "name": "Navigation",
+      "selectors": [
+        "nav",
+        "nav a",
+        "nav a.active"
+      ]
+    },
+    {
+      "id": "status-dots",
+      "name": "Status dots",
+      "selectors": [
+        "dot",
+        "dot-live",
+        "dot-warn",
+        "dot-danger"
+      ]
+    },
+    {
+      "id": "bar-chart",
+      "name": "Bar chart (shared field)",
+      "selectors": [
+        "bars",
+        "bar",
+        "bar.empty"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "plasma-pixel",
+  "name": "Plasma Pixel",
+  "category": "Developer Tools",
+  "description": "Demoscene-derived identity: colour moving through a shape. Near-black surfaces, pixel caps type, zero radius, hard offset shadows, and one animated mechanism — the Mix — spent on data and marks only.",
+  "source": {
+    "type": "local",
+    "origin": "aravasio/plasma-pixel-ds — authored design system (Apache-style per-package MIT; tokens and docs MIT)"
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css",
+    "designTokens": "design-tokens.json",
+    "tailwind": "tailwind-v4.css",
+    "components": "components.html"
+  },
+  "usage": "USAGE.md",
+  "componentsManifest": "components.manifest.json",
+  "importMode": "normalized",
+  "craft": {
+    "applies": [],
+    "suggested": [
+      "color",
+      "accessibility-baseline"
+    ],
+    "exemptions": []
+  }
+}

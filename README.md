@@ -8,6 +8,33 @@ against.
 It began as the visual language for a macOS menu-bar app that watches a live
 number, and it is written here to travel to other surfaces without being redrawn.
 
+## Palette
+
+| Name | Colour | Hex | Use |
+|------|--------|-----|-----|
+| void | ![#05000E](swatches/void.svg) | `#05000E` | Background (rare) |
+| panel | ![#0B0018](swatches/panel.svg) | `#0B0018` | UI surfaces |
+| border | ![#2A1F44](swatches/border.svg) | `#2A1F44` | Borders, outlines |
+| borderSoft | ![#3A2C5E](swatches/borderSoft.svg) | `#3A2C5E` | Subtle borders |
+| cyan | ![#7FF9FF](swatches/cyan.svg) | `#7FF9FF` | Accents, marks |
+| magenta | ![#FF2D6F](swatches/magenta.svg) | `#FF2D6F` | Primary accent, spikes |
+| yellow | ![#FFE600](swatches/yellow.svg) | `#FFE600` | Warning, low balance |
+| violet | ![#A56BFF](swatches/violet.svg) | `#A56BFF` | Highlights, daily summary |
+| green | ![#37F5A0](swatches/green.svg) | `#37F5A0` | Positive states |
+| orange | ![#FF8A00](swatches/orange.svg) | `#FF8A00` | Warm accents |
+| textPrimary | ![#E7E2F5](swatches/textPrimary.svg) | `#E7E2F5` | Body text (light) |
+| textSecondary | ![#8E86A8](swatches/textSecondary.svg) | `#8E86A8` | Secondary text |
+| textTertiary | ![#5E5580](swatches/textTertiary.svg) | `#5E5580` | Tertiary text |
+| ultraAction | ![#FF7A1A](swatches/ultraAction.svg) | `#FF7A1A` | Strong action calls |
+
+**Gradient (seamless tile):**
+
+![gradient](swatches/gradient.svg)
+
+`linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%)`
+
+---
+
 ![status](https://img.shields.io/badge/core-1.1.0-7FF9FF?style=flat-square)
 ![license](https://img.shields.io/badge/docs-MIT-5E5580?style=flat-square)
 
@@ -62,6 +89,28 @@ Never hand-edit `tokens.css` or `PlasmaPixelTokens.swift` — they are generated
 
 The most common failure is applying the Mix generously. A large surface is mostly
 prose, so proportionally **less** of it qualifies, not more.
+
+## Open Design package
+
+`design-systems/plasma-pixel/` is an importable package for
+[Open Design](https://open-design.ai): `manifest.json` + `DESIGN.md` +
+`tokens.css` (the shared OD token contract mapped from `tokens.json`, plus the
+`--pp-*` brand extensions), `USAGE.md`, a `components.html` fixture that proves
+the tokens compose (Mix hero, buttons, inputs, toggles, cards, table, nav,
+status dots, shared-field chart), and derived `design-tokens.json`,
+`tailwind-v4.css`, `components.manifest.json`.
+
+To use it in Open Design: copy `design-systems/plasma-pixel/` into your Open
+Design install's `design-systems/` folder (the picker catalogs it on refresh),
+or import this GitHub repo with `od design-systems import-github`. Agents that
+fall back to reading this repo directly will find the same system in
+`PROMPT.md`.
+
+The generated files in the package come from `tokens.json`:
+`node scripts/generate-od-package.mjs`. `DESIGN.md`, `USAGE.md`, `components.html`
+and `manifest.json` are authored. If your Open Design build runs `pnpm guard`
+and rejects the `--pp-*` extensions, add them to
+`BRAND_EXTENSIONS["plasma-pixel"]` in its token schema.
 
 ## Fonts
 
