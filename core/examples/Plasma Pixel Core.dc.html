@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #05000E; }
+  a { color: #7FF9FF; text-decoration: none; }
+  a:hover { color: #FFE600; }
+  @keyframes ppDrift192 { to { background-position: 0 -192px; } }
+  @keyframes ppDrift74  { to { background-position: 0 -74px; } }
+  @keyframes ppDrift58  { to { background-position: 0 -58px; } }
+  @keyframes ppDrift42  { to { background-position: 0 -42px; } }
+  @keyframes ppGhost8 { 0%,100% { transform: translateX(8px); } 50% { transform: translateX(-8px); } }
+  @keyframes ppGhost3 { 0%,100% { transform: translateX(3px); } 50% { transform: translateX(-3px); } }
+  @keyframes ppGhost1 { 0%,100% { transform: translateX(1px); } 50% { transform: translateX(-1px); } }
+  @keyframes ppSkew { 0%,100% { transform: skewX(0deg) translateX(0); } 50% { transform: skewX(-2.5deg) translateX(0.5px); } }
+  @keyframes ppBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: .4; } }
+  @keyframes ppPlasma {
+    0%,100% { background-position: 0% 0%, 100% 100%, 50% 100%; }
+    50%     { background-position: 100% 50%, 0% 0%, 0% 40%; }
+  }
+  [data-pp-kill="1"] * { animation: none !important; }
+  [data-pp-kill="1"] [data-pp-fill] { background-image: none !important; -webkit-text-fill-color: #7FF9FF !important; color: #7FF9FF !important; }
+  [data-pp-kill="1"] [data-pp-ghost] { display: none !important; }
+  [data-pp-kill="1"] [data-pp-frame] { background-image: none !important; background-color: #7FF9FF !important; }
+  [data-pp-kill="1"] [data-pp-bar] { background-image: none !important; background-color: #7FF9FF !important; }
+  [data-pp-kill="1"] [data-pp-texture] { display: none !important; }
+</style>
+</helmet>
+
+<div data-pp-kill="{{ killAttr }}" style="width: 1200px; background: #05000E; font-family: 'IBM Plex Mono', monospace; color: #E7E2F5; padding: 0 0 88px; box-sizing: border-box; overflow: hidden; text-wrap: pretty;">
+
+  <div style="display: flex; align-items: center; gap: 14px; padding: 24px 64px; border-bottom: 1px solid #2A1F44;">
+    <div style="width: 18px; height: 18px; background: #7FF9FF; box-shadow: 4px 4px 0 #FF2D6F;"></div>
+    <div style="position: relative; width: fit-content;">
+      <div data-pp-ghost style="position: absolute; inset: 0; font: 700 22px/1 Silkscreen, monospace; letter-spacing: .06em; color: #FF2D6F; opacity: .75; animation: ppGhost1 2.1s ease-in-out infinite;">PLASMA PIXEL</div>
+      <div data-pp-ghost style="position: absolute; inset: 0; font: 700 22px/1 Silkscreen, monospace; letter-spacing: .06em; color: #7FF9FF; opacity: .75; animation: ppGhost1 2.1s ease-in-out infinite; animation-delay: -1.05s;">PLASMA PIXEL</div>
+      <div data-pp-fill style="position: relative; font: 700 22px/1 Silkscreen, monospace; letter-spacing: .06em; background-image: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%); background-size: 100% 42px; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: ppDrift42 4.2s linear infinite;">PLASMA PIXEL</div>
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="font: 700 12px/1 Silkscreen, monospace; letter-spacing: .1em; color: #5E5580;">CORE 1.1.0 · OPEN DENSITY</div>
+    <div onClick="{{ toggleKill }}" style="font: 700 12px/1 Silkscreen, monospace; letter-spacing: .06em; color: #E7E2F5; border: 2px solid rgba(127,249,255,.45); padding: 9px 14px; cursor: pointer; user-select: none;" style-hover="border-color: #7FF9FF;">{{ killLabel }}</div>
+  </div>
+
+  <div style="position: relative; overflow: hidden; padding: 60px 64px 52px; border-bottom: 1px solid #2A1F44;">
+    <div data-pp-texture style="position: absolute; inset: -25%; background-image: radial-gradient(circle at 28% 26%, rgba(43,184,255,.60), transparent 46%), radial-gradient(circle at 74% 58%, rgba(255,45,111,.55), transparent 46%), radial-gradient(circle at 46% 92%, rgba(165,107,255,.55), transparent 46%); background-size: 180% 180%, 170% 170%, 200% 200%; background-repeat: no-repeat; filter: blur(7px); animation: ppPlasma 9s ease-in-out infinite; pointer-events: none;"></div>
+    <div data-pp-texture style="position: absolute; inset: 0; background-image: repeating-conic-gradient(rgba(0,0,0,.60) 0% 25%, transparent 0% 50%); background-size: 4px 4px; pointer-events: none;"></div>
+
+    <div style="position: relative; display: flex; flex-direction: column; gap: 20px;">
+      <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #7FF9FF;">ONE HERO PER SURFACE</div>
+      <div style="position: relative; width: fit-content; animation: ppSkew 3.4s ease-in-out infinite;">
+        <div data-pp-ghost style="position: absolute; inset: 0; font: 700 120px/1 Silkscreen, monospace; color: #FF2D6F; opacity: .75; animation: ppGhost8 2.1s ease-in-out infinite;">$12.08</div>
+        <div data-pp-ghost style="position: absolute; inset: 0; font: 700 120px/1 Silkscreen, monospace; color: #7FF9FF; opacity: .75; animation: ppGhost8 2.1s ease-in-out infinite; animation-delay: -1.05s;">$12.08</div>
+        <div data-pp-fill style="position: relative; font: 700 120px/1 Silkscreen, monospace; background-image: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%); background-size: 100% 192px; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: ppDrift192 19.2s linear infinite;">$12.08</div>
+      </div>
+      <div style="max-width: 620px; font-size: 16px; line-height: 1.65; color: #8E86A8;">Tile height is 1.6× the block: 120 px of type takes a 192 px tile, and at a constant 10 px/s that is a 19.2 s cycle. The ghost offset is size ÷ 16 — 8 px here, the same proportion 1 px carries at 7 px type. Everything on this page other than this number and the wordmark is flat.</div>
+    </div>
+  </div>
+
+  <div style="padding: 52px 64px; display: flex; flex-direction: column; gap: 18px; border-bottom: 1px solid #2A1F44;">
+    <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">PALETTE</div>
+    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;">
+      <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="14">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="height: 56px; border: 1px solid #2A1F44; background: {{ s.hex }};"></div>
+          <div style="font: 700 10px/1.4 Silkscreen, monospace; letter-spacing: .04em; color: #E7E2F5;">{{ s.name }}</div>
+          <div style="font: 400 11px/1 'IBM Plex Mono', monospace; color: #5E5580;">{{ s.hex }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="height: 26px; border: 1px solid #2A1F44; background-image: linear-gradient(90deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);"></div>
+    <div style="font-size: 14px; line-height: 1.6; color: #8E86A8;">The gradient's first and last stop are identical so the tile repeats seamlessly. Shown here horizontally; in use it is always vertical, inside a glyph or a 2 px border.</div>
+  </div>
+
+  <div style="padding: 52px 64px; display: flex; gap: 48px; border-bottom: 1px solid #2A1F44;">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 22px;">
+      <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">TYPE</div>
+      <div style="font: 700 46px/1 Silkscreen, monospace; letter-spacing: .04em; color: #E7E2F5;">DISPLAY 46</div>
+      <div style="font: 700 20px/1 Silkscreen, monospace; letter-spacing: .06em; color: #E7E2F5;">HEADING 20</div>
+      <div style="font: 700 12px/1 Silkscreen, monospace; letter-spacing: .1em; color: #5E5580;">MICRO-LABEL 12 · CAPS ONLY</div>
+      <div style="max-width: 460px; font-size: 16px; line-height: 1.65; color: #E7E2F5;">Prose is IBM Plex Mono at 16 px with a 1.65 line height. Silkscreen never sets a sentence at any size — its x-height makes a paragraph unreadable, and the pixel grid fights the eye at reading length.</div>
+      <div style="max-width: 460px; font-size: 14px; line-height: 1.6; color: #8E86A8;">Secondary prose sits at 14 px in a muted violet-grey, still above the contrast floor on a near-black surface.</div>
+    </div>
+
+    <div style="width: 400px; display: flex; flex-direction: column; gap: 22px;">
+      <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">BUTTONS</div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-pp-frame style="padding: 2px; background-image: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%); background-size: 100% 58px; animation: ppDrift58 5.8s linear infinite; box-shadow: 4px 4px 0 rgba(255,45,111,.70); cursor: pointer;">
+          <div style="background: #05000E; padding: 13px 0; text-align: center; font: 700 13px/1 Silkscreen, monospace; letter-spacing: .06em; color: #ffffff;">PRIMARY · GRADIENT FRAME</div>
+        </div>
+        <div style="border: 2px solid rgba(127,249,255,.45); padding: 13px 0; text-align: center; font: 700 13px/1 Silkscreen, monospace; letter-spacing: .06em; color: #E7E2F5; cursor: pointer;" style-hover="border-color: #7FF9FF;">SECONDARY · STROKE</div>
+        <div style="background: #FFE600; padding: 13px 0; text-align: center; font: 700 13px/1 Silkscreen, monospace; letter-spacing: .06em; color: #05000E; box-shadow: 4px 4px 0 rgba(255,45,111,.55); cursor: pointer;">LOUD · ONCE PER SURFACE</div>
+        <div style="border: 1px solid #3A2C5E; padding: 13px 0; text-align: center; font: 700 13px/1 Silkscreen, monospace; letter-spacing: .06em; color: #5E5580;">DISABLED</div>
+      </div>
+      <div style="font-size: 14px; line-height: 1.6; color: #8E86A8;">The gradient never fills a button: the label would lose contrast every time magenta passed under it. It goes on the border, with a solid interior.</div>
+    </div>
+  </div>
+
+  <div style="padding: 52px 64px; display: flex; gap: 48px; border-bottom: 1px solid #2A1F44;">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">SHARED FIELD</div>
+      <div style="display: flex; align-items: flex-end; gap: 10px; height: 140px;">
+        <sc-for list="{{ bars }}" as="b" hint-placeholder-count="14">
+          <div data-pp-bar style="flex: 1; height: {{ b.h }}px; background-image: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%); background-size: 100% 74px; animation: ppDrift74 7.4s linear infinite; animation-delay: {{ b.delay }}s;"></div>
+        </sc-for>
+      </div>
+      <div style="display: flex; justify-content: space-between; font: 700 11px/1 Silkscreen, monospace; letter-spacing: .06em; color: #5E5580;">
+        <div>-14 D</div>
+        <div>TODAY</div>
+      </div>
+      <div style="font-size: 14px; line-height: 1.6; color: #8E86A8;">Every bar shares one gradient and one tile; only the delay differs, so the colour crosses the group as a single sheet. Per-bar gradients would make short bars magenta and tall bars violet — colour encoding height, which height already encodes.</div>
+    </div>
+
+    <div style="width: 400px; display: flex; flex-direction: column; gap: 20px;">
+      <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">STATE &amp; FORM</div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ states }}" as="st" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 8px; height: 8px; background: {{ st.color }}; animation: ppBlink 1.4s steps(2) infinite;"></div>
+            <div style="flex: 1; font-size: 14px; color: #E7E2F5;">{{ st.label }}</div>
+            <div style="font: 700 11px/1 Silkscreen, monospace; letter-spacing: .06em; color: #5E5580;">{{ st.token }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 4px;">
+        <sc-for list="{{ segments }}" as="seg" hint-placeholder-count="5">
+          <div style="flex: 1; text-align: center; padding: 9px 0; font: 700 11px/1 Silkscreen, monospace; letter-spacing: .04em; border: 1px solid {{ seg.border }}; background: {{ seg.bg }}; color: {{ seg.fg }}; cursor: pointer;">{{ seg.label }}</div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <div style="flex: 1; background: #0B0018; border: 1px solid #2A1F44; padding: 11px 12px; font-size: 14px; color: #8E86A8;">api key</div>
+        <div style="background: #7FF9FF; color: #05000E; font: 700 12px/1 Silkscreen, monospace; padding: 0 16px; display: flex; align-items: center; cursor: pointer;">OK</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 30px; height: 14px; background: #7FF9FF; padding: 1px; display: flex; justify-content: flex-end; box-sizing: border-box;">
+          <div style="width: 12px; height: 12px; background: #05000E;"></div>
+        </div>
+        <div style="font-size: 14px; color: #E7E2F5;">Square knob, radius 0, no easing</div>
+      </div>
+      <div style="border: 2px solid #FF2D6F; padding: 12px; display: flex; flex-direction: column; gap: 7px;">
+        <div style="font: 700 11px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FF2D6F;">ALARM · FLAT BY RULE</div>
+        <div style="font: 700 34px/1 Silkscreen, monospace; color: #FFE600;">$4.87</div>
+        <div style="font-size: 13px; line-height: 1.55; color: #8E86A8;">When the data itself is the alarm, its colour is fixed and does not drift.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 52px 64px; display: flex; flex-direction: column; gap: 20px;">
+    <div style="font: 700 13px/1 Silkscreen, monospace; letter-spacing: .1em; color: #FFE600;">MOTION INVENTORY</div>
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 0; border: 1px solid #2A1F44;">
+      <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font: 700 11px/1 Silkscreen, monospace; letter-spacing: .1em; color: #5E5580;">WHAT</div>
+      <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font: 700 11px/1 Silkscreen, monospace; letter-spacing: .1em; color: #5E5580;">DURATION</div>
+      <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font: 700 11px/1 Silkscreen, monospace; letter-spacing: .1em; color: #5E5580;">CURVE</div>
+      <sc-for list="{{ motion }}" as="m" hint-placeholder-count="6">
+        <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font-size: 14px; color: #E7E2F5;">{{ m.what }}</div>
+        <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font: 700 13px/1 Silkscreen, monospace; color: #7FF9FF;">{{ m.dur }}</div>
+        <div style="padding: 11px 14px; border-bottom: 1px solid #2A1F44; font-size: 14px; color: #8E86A8;">{{ m.curve }}</div>
+      </sc-for>
+    </div>
+    <div style="font-size: 14px; line-height: 1.6; color: #8E86A8;">Six entries, and that is the whole system. No parallax, no scroll-driven motion, no entrance animations, no overshoot. Anything not on this list needs a reason written down beside it.</div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:1600},&quot;killSwitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mix&quot;}}">
+class Component extends DCLogic {
+  state = { kill: false };
+
+  renderVals() {
+    const kill = this.props.killSwitch ?? this.state.kill;
+    const vals = [1.2, 0.4, 2.1, 3.0, 0.9, 1.8, 4.2, 2.6, 0.3, 1.1, 3.4, 2.2, 1.6, 3.41];
+    const H = 140, T = 74, D = 7.4;
+    const bars = vals.map(v => {
+      const h = Math.max(3, Math.round(v / 4.2 * H));
+      return { h, delay: (-(((H - h) % T) / T) * D).toFixed(2) };
+    });
+
+    return {
+      killAttr: kill ? "1" : "0",
+      killLabel: kill ? "MIX OFF" : "MIX ON",
+      toggleKill: () => this.setState(s => ({ kill: !s.kill })),
+      bars,
+      swatches: [
+        { name: "void", hex: "#05000E" }, { name: "panel", hex: "#0B0018" },
+        { name: "border", hex: "#2A1F44" }, { name: "borderSoft", hex: "#3A2C5E" },
+        { name: "cyan", hex: "#7FF9FF" }, { name: "magenta", hex: "#FF2D6F" },
+        { name: "yellow", hex: "#FFE600" }, { name: "violet", hex: "#A56BFF" },
+        { name: "green", hex: "#37F5A0" }, { name: "orange", hex: "#FF8A00" },
+        { name: "textPrimary", hex: "#E7E2F5" }, { name: "textSecondary", hex: "#8E86A8" },
+        { name: "textTertiary", hex: "#5E5580" }, { name: "ultraAction", hex: "#FF7A1A" }
+      ],
+      states: [
+        { label: "Live / normal", color: "#7FF9FF", token: "CYAN" },
+        { label: "Attention", color: "#FFE600", token: "YELLOW" },
+        { label: "Urgent", color: "#FF2D6F", token: "MAGENTA" },
+        { label: "Scheduled", color: "#A56BFF", token: "VIOLET" }
+      ],
+      segments: ["1H", "12H", "24H", "7D", "30D"].map(l => l === "24H"
+        ? { label: l, bg: "#FFE600", fg: "#05000E", border: "#FFE600" }
+        : { label: l, bg: "transparent", fg: "#5E5580", border: "#2A1F44" }),
+      motion: [
+        { what: "Gradient drift", dur: "T / 10 S", curve: "linear" },
+        { what: "Ghost cross", dur: "2.1 S", curve: "ease-in-out" },
+        { what: "Hero skew", dur: "3.4 S", curve: "ease-in-out" },
+        { what: "Live dot", dur: "1.4 S", curve: "steps(2)" },
+        { what: "Focus / hover / press", dur: "0.12 S", curve: "linear" },
+        { what: "Screen transition", dur: "0.28 S", curve: "ease-out" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

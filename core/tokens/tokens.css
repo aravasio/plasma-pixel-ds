@@ -1,0 +1,55 @@
+/* Plasma Pixel — design tokens (generated from tokens.json) */
+:root {
+  --pp-void: #05000E;
+  --pp-panel: #0B0018;
+  --pp-border: #2A1F44;
+  --pp-border-soft: #3A2C5E;
+  --pp-cyan: #7FF9FF;
+  --pp-magenta: #FF2D6F;
+  --pp-yellow: #FFE600;
+  --pp-violet: #A56BFF;
+  --pp-green: #37F5A0;
+  --pp-orange: #FF8A00;
+  --pp-text-primary: #E7E2F5;
+  --pp-text-secondary: #8E86A8;
+  --pp-text-tertiary: #5E5580;
+  --pp-ultra-action: #FF7A1A;
+
+  --pp-gradient: linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);
+  --pp-dither: repeating-conic-gradient(rgba(0,0,0,.60) 0% 25%, transparent 0% 50%);
+  --pp-dither-size: 4px 4px;
+
+  --pp-radius: 0;
+  --pp-radius-popover: 12px;
+  --pp-border-chrome: 1px solid var(--pp-border);
+
+  --pp-speed: 10;          /* px per second — never change */
+  --pp-tile-ratio: 1.6;    /* tile height = 1.6 x block height */
+  --pp-ghost-cycle: 2.1s;
+  --pp-skew-cycle: 3.4s;
+  --pp-frame-tile: 58px;
+  --pp-frame-duration: 5.8s;
+}
+
+/* One keyframe per distinct tile height. Each translates exactly -T. */
+@keyframes pp-drift-30 { to { background-position: 0 -30px; } }
+@keyframes pp-drift-32 { to { background-position: 0 -32px; } }
+@keyframes pp-drift-36 { to { background-position: 0 -36px; } }
+@keyframes pp-drift-42 { to { background-position: 0 -42px; } }
+@keyframes pp-drift-45 { to { background-position: 0 -45px; } }
+@keyframes pp-drift-48 { to { background-position: 0 -48px; } }
+@keyframes pp-drift-58 { to { background-position: 0 -58px; } }
+@keyframes pp-drift-72 { to { background-position: 0 -72px; } }
+
+@keyframes pp-ghost { 0%,100% { transform: translateX(var(--pp-g, 1px)); }
+                      50%     { transform: translateX(calc(-1 * var(--pp-g, 1px))); } }
+
+@keyframes pp-skew { 0%,100% { transform: skewX(0deg) translateX(0); }
+                     50%     { transform: skewX(-2.5deg) translateX(0.5px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Kill switch: no gradient, no ghosts, no skew. Flat cyan. */
+  [data-pp-mix] * { animation: none !important; background-image: none !important;
+                    -webkit-text-fill-color: var(--pp-cyan) !important; }
+  [data-pp-mix] [data-pp-ghost] { display: none !important; }
+}

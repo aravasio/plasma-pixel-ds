@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#05000E;color:#E7E2F5;font-family:'IBM Plex Mono',ui-monospace,monospace;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:#7FF9FF;text-decoration:none;border-bottom:1px solid rgba(127,249,255,.4)}
+  a:hover{color:#FFE600;border-bottom-color:#FFE600}
+  @keyframes omPlasma{0%{background-position:0% 50%,100% 50%,50% 0%}50%{background-position:100% 50%,0% 50%,50% 100%}100%{background-position:0% 50%,100% 50%,50% 0%}}
+  @keyframes omBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes omPulse{0%,100%{opacity:.45}50%{opacity:1}}
+  @keyframes omHue{0%{color:#FF2D6F}25%{color:#FFE600}50%{color:#7FF9FF}75%{color:#A56BFF}100%{color:#FF2D6F}}
+  @keyframes omDrift{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+</style>
+</helmet>
+
+<section style="padding:56px 60px 110px;display:flex;flex-direction:column;gap:60px">
+
+  <!-- ── cabecera ── -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:660px">
+      <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#7FF9FF">Turno 2 · SaldoBar · v2</div>
+      <h1 style="margin:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:44px;line-height:1.15;letter-spacing:-.01em;color:#fff;text-shadow:4px 4px 0 #FF2D6F,8px 8px 0 rgba(43,184,255,.5)">PLASMA<br>PIXEL</h1>
+      <p style="margin:0;font-size:13px;line-height:1.85;color:#8E86A8">Una sola dirección, llevada a todas las superficies: barra de menú, reloj (banner, long look, cara, always-on, Smart Stack), popover completo y panel de alertas. Bitmap 8×8 sobre plasma cian-magenta con trama dither de 4 px, bordes duros y sombra desplazada — sin esquinas redondeadas salvo el hardware.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <button onClick="{{ toggleLang }}" style="font-family:'Silkscreen',monospace;font-size:11px;color:#05000E;background:#7FF9FF;border:0;padding:11px 16px;cursor:pointer;box-shadow:4px 4px 0 #FF2D6F" style-hover="background:#FFE600;box-shadow:4px 4px 0 #A56BFF">
+        <span style="display:var(--om-es,inline)">ES → EN</span><span style="display:var(--om-en,none)">EN → ES</span>
+      </button>
+      <div style="display:flex;gap:6px">
+        <div style="width:34px;height:34px;background:#7FF9FF"></div>
+        <div style="width:34px;height:34px;background:#FF2D6F"></div>
+        <div style="width:34px;height:34px;background:#FFE600"></div>
+        <div style="width:34px;height:34px;background:#A56BFF"></div>
+        <div style="width:34px;height:34px;background:#05000E;border:2px solid #2A1F44"></div>
+      </div>
+      <div style="font-size:10px;line-height:1.9;color:#5E5580">#7FF9FF · #FF2D6F · #FFE600<br>#A56BFF · #05000E void</div>
+      <div style="border-top:1px solid #2A1F44;padding-top:12px;display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:'Silkscreen',monospace;font-size:14px;color:#fff">Silkscreen 700</div>
+        <div style="font-size:11px;color:#8E86A8">IBM Plex Mono 400/600 — texto corrido y datos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── barra de menú ── -->
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:17px;color:#FFE600">01 · BARRA DE MENÚ</div><div style="font-size:12px;color:#5E5580">NewsLabel.swift</div></div>
+    <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:320px;height:26px;background:rgba(12,4,26,.94);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-size:7px;line-height:9px;color:rgba(231,226,245,.4)"><div>you've got</div><div>no mail</div></div>
+          <div style="font-size:11px;color:rgba(231,226,245,.8)">mar 9 ago 14:32</div>
+        </div>
+        <div style="font-size:10.5px;color:#5E5580">sin novedades — susurro, sin trama</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:320px;height:26px;background:rgba(12,4,26,.94);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-size:7px;line-height:9px">
+            <div><span style="animation:omHue 4s steps(4,end) infinite;animation-play-state:var(--om-play,running)">Y</span><span style="animation:omHue 4s steps(4,end) infinite -.4s;animation-play-state:var(--om-play,running)">O</span><span style="animation:omHue 4s steps(4,end) infinite -.8s;animation-play-state:var(--om-play,running)">U</span><span style="animation:omHue 4s steps(4,end) infinite -1.2s;animation-play-state:var(--om-play,running)">'</span><span style="animation:omHue 4s steps(4,end) infinite -1.6s;animation-play-state:var(--om-play,running)">V</span><span style="animation:omHue 4s steps(4,end) infinite -2s;animation-play-state:var(--om-play,running)">E</span><span style="animation:omHue 4s steps(4,end) infinite -2.4s;animation-play-state:var(--om-play,running);display:inline-block;width:5px"></span><span style="animation:omHue 4s steps(4,end) infinite -2.8s;animation-play-state:var(--om-play,running)">G</span><span style="animation:omHue 4s steps(4,end) infinite -3.2s;animation-play-state:var(--om-play,running)">O</span><span style="animation:omHue 4s steps(4,end) infinite -3.6s;animation-play-state:var(--om-play,running)">T</span></div>
+            <div><span style="animation:omHue 4s steps(4,end) infinite -1s;animation-play-state:var(--om-play,running)">N</span><span style="animation:omHue 4s steps(4,end) infinite -2s;animation-play-state:var(--om-play,running)">E</span><span style="animation:omHue 4s steps(4,end) infinite -3s;animation-play-state:var(--om-play,running)">W</span><span style="animation:omHue 4s steps(4,end) infinite;animation-play-state:var(--om-play,running)">S</span></div>
+          </div>
+          <div style="font-size:11px;color:rgba(231,226,245,.8)">mar 9 ago 14:32</div>
+        </div>
+        <div style="font-size:10.5px;color:#5E5580">con noticias — ciclo de 4 tonos en pasos, no continuo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── reloj ── -->
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:17px;color:#FFE600">02 · APPLE WATCH ULTRA 2</div><div style="font-size:12px;color:#5E5580">49 mm · 410×502 · vía ntfy</div></div>
+
+    <div style="display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start">
+
+      <!-- banner -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 banner" style="position:relative;width:302px;height:362px;border-radius:68px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#7A756B,#33302B 38%,#524E46 68%,#232120);box-shadow:0 34px 70px -22px rgba(0,0,0,.9)">
+          <div style="position:absolute;left:-4px;top:120px;width:5px;height:40px;border-radius:3px;background:linear-gradient(90deg,#FF7A1A,#C24E00)"></div>
+          <div style="position:absolute;right:-5px;top:96px;width:6px;height:34px;border-radius:3px;background:linear-gradient(90deg,#6B6659,#3A372F)"></div>
+          <div style="position:absolute;right:-5px;top:150px;width:6px;height:24px;border-radius:3px;background:linear-gradient(90deg,#6B6659,#3A372F)"></div>
+          <div style="width:100%;height:100%;border-radius:54px;background:#05000E;overflow:hidden;position:relative;display:flex;flex-direction:column">
+            <div style="position:absolute;inset:-25%;background-image:radial-gradient(circle at 28% 26%,rgba(43,184,255,.6),transparent 46%),radial-gradient(circle at 74% 58%,rgba(255,45,111,.55),transparent 46%),radial-gradient(circle at 46% 92%,rgba(165,107,255,.55),transparent 46%);background-size:180% 180%,170% 170%,200% 200%;filter:blur(7px);animation:omPlasma 9s ease-in-out infinite;animation-play-state:var(--om-play,running)"></div>
+            <div style="position:absolute;inset:0;background:repeating-conic-gradient(rgba(0,0,0,.6) 0% 25%,rgba(0,0,0,0) 0% 50%);background-size:var(--om-dither,4px 4px);z-index:3"></div>
+            <div style="position:relative;z-index:4;padding:20px 20px 0;display:flex;align-items:center;gap:8px">
+              <div style="width:14px;height:14px;background:#7FF9FF;box-shadow:3px 3px 0 #FF2D6F"></div>
+              <div style="font-family:'Silkscreen',monospace;font-size:10px;letter-spacing:.06em;color:#fff">SALDOBAR</div>
+              <div style="flex:1"></div>
+              <div style="font-family:'Silkscreen',monospace;font-size:10px;color:rgba(255,255,255,.55)">14:32</div>
+            </div>
+            <div style="position:relative;z-index:4;padding:18px 20px 0;display:flex;flex-direction:column;gap:10px">
+              <div style="font-family:'Silkscreen',monospace;font-size:10px;letter-spacing:.1em;color:#7FF9FF"><span style="display:var(--om-es,inline)">TE QUEDAN</span><span style="display:var(--om-en,none)">YOU HAVE LEFT</span></div>
+              <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#fff;text-shadow:4px 4px 0 #FF2D6F,8px 8px 0 rgba(43,184,255,.55)">$12.08</div>
+              <div style="font-family:'Silkscreen',monospace;font-size:9.5px;line-height:1.9;color:rgba(255,255,255,.8);margin-top:4px"><span style="display:var(--om-es,inline)">DE $25.00 · ~3.5 DIAS</span><span style="display:var(--om-en,none)">OF $25.00 · ~3.5 DAYS</span></div>
+            </div>
+            <div style="position:relative;z-index:4;padding:18px 20px 0;display:flex;align-items:flex-end;gap:4px;height:36px">
+              <sc-for list="{{ spark }}" as="b" hint-placeholder-count="10">
+                <div style="flex:1;min-height:3px;background:{{ b.c }};height:{{ b.h }}"></div>
+              </sc-for>
+            </div>
+            <div style="flex:1"></div>
+            <div style="position:relative;z-index:4;margin:0 14px 16px;background:#0B0018;border:2px solid #7FF9FF;box-shadow:4px 4px 0 rgba(255,45,111,.85);padding:10px 12px;display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:7px">
+                <div style="width:8px;height:8px;background:#FFE600;animation:omPulse 1.4s steps(2,end) infinite;animation-play-state:var(--om-play,running)"></div>
+                <div style="font-family:'Silkscreen',monospace;font-size:9.5px;color:#FFE600"><span style="display:var(--om-es,inline)">DOLAR 12 CONSUMIDO</span><span style="display:var(--om-en,none)">DOLLAR 12 SPENT</span></div>
+              </div>
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;line-height:1.8;color:rgba(255,255,255,.6)">24 H $3.41 · $3.41/D</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">BANNER / SHORT LOOK</div>
+      </div>
+
+      <!-- long look -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 long look" style="position:relative;width:302px;height:362px;border-radius:68px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#7A756B,#33302B 38%,#524E46 68%,#232120);box-shadow:0 34px 70px -22px rgba(0,0,0,.9)">
+          <div style="position:absolute;left:-4px;top:120px;width:5px;height:40px;border-radius:3px;background:linear-gradient(90deg,#FF7A1A,#C24E00)"></div>
+          <div style="width:100%;height:100%;border-radius:54px;background:#05000E;overflow:hidden;position:relative;display:flex;flex-direction:column">
+            <div style="position:absolute;inset:-25%;background-image:radial-gradient(circle at 30% 20%,rgba(43,184,255,.4),transparent 48%),radial-gradient(circle at 70% 80%,rgba(255,45,111,.35),transparent 48%);background-size:180% 180%,170% 170%;filter:blur(9px)"></div>
+            <div style="position:absolute;inset:0;background:repeating-conic-gradient(rgba(0,0,0,.6) 0% 25%,rgba(0,0,0,0) 0% 50%);background-size:var(--om-dither,4px 4px);z-index:3"></div>
+            <div style="position:relative;z-index:4;padding:18px 20px 0;display:flex;align-items:center;gap:7px">
+              <div style="width:11px;height:11px;background:#7FF9FF"></div>
+              <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#fff">SALDOBAR</div>
+              <div style="flex:1"></div><div style="font-family:'Silkscreen',monospace;font-size:9px;color:rgba(255,255,255,.5)">14:32</div>
+            </div>
+            <div style="position:relative;z-index:4;padding:12px 20px 0">
+              <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:34px;line-height:1;color:#fff;text-shadow:3px 3px 0 #FF2D6F,6px 6px 0 rgba(43,184,255,.5)">$12.08</div>
+            </div>
+            <div style="position:relative;z-index:4;padding:14px 20px 0;display:flex;flex-direction:column;gap:7px;font-family:'Silkscreen',monospace;font-size:9px">
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(127,249,255,.25);padding-bottom:6px"><span style="color:rgba(255,255,255,.55)"><span style="display:var(--om-es,inline)">CONSUMO 24 H</span><span style="display:var(--om-en,none)">SPEND 24 H</span></span><span style="color:#fff">$3.41</span></div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(127,249,255,.25);padding-bottom:6px"><span style="color:rgba(255,255,255,.55)"><span style="display:var(--om-es,inline)">RITMO</span><span style="display:var(--om-en,none)">BURN</span></span><span style="color:#fff">$3.41/D</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:rgba(255,255,255,.55)"><span style="display:var(--om-es,inline)">SE ACABA</span><span style="display:var(--om-en,none)">RUNS OUT</span></span><span style="color:#FFE600">~3.5 D</span></div>
+            </div>
+            <div style="position:relative;z-index:4;padding:14px 20px 0;display:flex;align-items:flex-end;gap:3px;height:38px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="14">
+                <div style="flex:1;min-height:2px;background:{{ b.c }};height:{{ b.h }}"></div>
+              </sc-for>
+            </div>
+            <div style="flex:1"></div>
+            <div style="position:relative;z-index:4;padding:0 16px 16px;display:flex;flex-direction:column;gap:7px">
+              <div style="background:#7FF9FF;color:#05000E;text-align:center;padding:11px 0;font-family:'Silkscreen',monospace;font-size:10px;box-shadow:4px 4px 0 #FF2D6F"><span style="display:var(--om-es,inline)">RECARGAR</span><span style="display:var(--om-en,none)">TOP UP</span></div>
+              <div style="border:2px solid rgba(127,249,255,.45);color:#fff;text-align:center;padding:9px 0;font-family:'Silkscreen',monospace;font-size:10px"><span style="display:var(--om-es,inline)">SILENCIAR 1 H</span><span style="display:var(--om-en,none)">MUTE 1 H</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">LONG LOOK</div>
+      </div>
+
+      <!-- cara -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 cara modular" style="position:relative;width:302px;height:362px;border-radius:68px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#7A756B,#33302B 38%,#524E46 68%,#232120);box-shadow:0 34px 70px -22px rgba(0,0,0,.9)">
+          <div style="position:absolute;left:-4px;top:120px;width:5px;height:40px;border-radius:3px;background:linear-gradient(90deg,#FF7A1A,#C24E00)"></div>
+          <div style="width:100%;height:100%;border-radius:54px;background:#05000E;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:26px 22px 22px;box-sizing:border-box">
+            <div style="position:absolute;inset:0;background:repeating-conic-gradient(rgba(0,0,0,.55) 0% 25%,rgba(0,0,0,0) 0% 50%);background-size:var(--om-dither,4px 4px);z-index:3"></div>
+            <div style="display:flex;justify-content:space-between;font-family:'Silkscreen',monospace;font-size:9.5px;position:relative;z-index:4"><span style="color:#FF7A1A">MAR 9 AGO</span><span style="color:rgba(255,255,255,.45)">18°</span></div>
+            <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:52px;line-height:1.1;color:#fff;margin-top:14px;position:relative;z-index:4;text-shadow:4px 4px 0 #FF2D6F,8px 8px 0 rgba(43,184,255,.5)">14:32</div>
+            <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(255,255,255,.42);margin-top:14px;position:relative;z-index:4;line-height:1.9">62 PPM · 8412 PASOS</div>
+            <div style="flex:1"></div>
+            <div style="border:2px solid #7FF9FF;background:rgba(11,0,24,.7);box-shadow:4px 4px 0 rgba(255,45,111,.7);padding:11px 12px;position:relative;z-index:4;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#7FF9FF;letter-spacing:.06em">SALDOBAR</div>
+                <div style="flex:1"></div>
+                <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(255,255,255,.5)">$3.41/D</div>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:9px">
+                <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:22px;line-height:1;color:#fff">$12.08</div>
+                <div style="flex:1;display:flex;align-items:flex-end;gap:2px;height:22px">
+                  <sc-for list="{{ spark }}" as="b" hint-placeholder-count="10">
+                    <div style="flex:1;min-height:2px;background:{{ b.c }};height:{{ b.h }}"></div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">CARA MODULAR + COMPLICACIÓN RECT.</div>
+      </div>
+
+      <!-- always on -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 always-on" style="position:relative;width:302px;height:362px;border-radius:68px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#57534C,#2A2825 38%,#3C3934 68%,#1C1B19);box-shadow:0 34px 70px -22px rgba(0,0,0,.9)">
+          <div style="position:absolute;left:-4px;top:120px;width:5px;height:40px;border-radius:3px;background:linear-gradient(90deg,#B0562A,#7A3200)"></div>
+          <div style="width:100%;height:100%;border-radius:54px;background:#05000E;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:26px 22px 22px;box-sizing:border-box;opacity:.42">
+            <div style="display:flex;justify-content:space-between;font-family:'Silkscreen',monospace;font-size:9.5px"><span style="color:#B0562A">MAR 9 AGO</span><span style="color:rgba(255,255,255,.35)">18°</span></div>
+            <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:52px;line-height:1.1;color:rgba(255,255,255,.9);margin-top:14px;text-shadow:4px 4px 0 rgba(255,45,111,.45)">14:32</div>
+            <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(255,255,255,.28);margin-top:14px;line-height:1.9">62 PPM · 8412 PASOS</div>
+            <div style="flex:1"></div>
+            <div style="border:2px solid rgba(127,249,255,.5);padding:11px 12px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(127,249,255,.75);letter-spacing:.06em">SALDOBAR</div>
+              <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:22px;line-height:1;color:rgba(255,255,255,.9)">$12.08</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">ALWAYS-ON (42 % · SIN PLASMA NI TRAMA)</div>
+      </div>
+
+      <!-- smart stack -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 smart stack" style="position:relative;width:302px;height:362px;border-radius:68px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#7A756B,#33302B 38%,#524E46 68%,#232120);box-shadow:0 34px 70px -22px rgba(0,0,0,.9)">
+          <div style="position:absolute;left:-4px;top:120px;width:5px;height:40px;border-radius:3px;background:linear-gradient(90deg,#FF7A1A,#C24E00)"></div>
+          <div style="width:100%;height:100%;border-radius:54px;background:#05000E;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:24px 18px;box-sizing:border-box;gap:10px">
+            <div style="position:absolute;inset:0;background:repeating-conic-gradient(rgba(0,0,0,.55) 0% 25%,rgba(0,0,0,0) 0% 50%);background-size:var(--om-dither,4px 4px);z-index:3"></div>
+            <div style="display:flex;justify-content:space-between;font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(255,255,255,.45);position:relative;z-index:4"><span>SMART STACK</span><span>14:32</span></div>
+            <div style="position:relative;z-index:4;background:linear-gradient(180deg,rgba(43,184,255,.3),rgba(255,45,111,.16));border:2px solid #7FF9FF;box-shadow:4px 4px 0 rgba(255,45,111,.8);padding:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8px;color:#7FF9FF;letter-spacing:.08em">SALDOBAR · OPENROUTER</div>
+              <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:30px;line-height:1;color:#fff;text-shadow:3px 3px 0 #FF2D6F">$12.08</div>
+              <div style="display:flex;align-items:flex-end;gap:2px;height:32px">
+                <sc-for list="{{ bars }}" as="b" hint-placeholder-count="14">
+                  <div style="flex:1;min-height:2px;background:{{ b.c }};height:{{ b.h }}"></div>
+                </sc-for>
+              </div>
+              <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.7)"><span style="display:var(--om-es,inline)">$3.41/DIA · ~3.5 DIAS</span><span style="display:var(--om-en,none)">$3.41/DAY · ~3.5 DAYS</span></div>
+            </div>
+            <div style="position:relative;z-index:4;background:rgba(255,255,255,.05);border:1px solid #2A1F44;padding:14px;font-family:'Silkscreen',monospace;font-size:8.5px;color:rgba(255,255,255,.3)">CALENDARIO</div>
+            <div style="flex:1"></div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">WIDGET SMART STACK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── las 4 reglas ── -->
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:17px;color:#FFE600">03 · LAS CUATRO REGLAS</div><div style="font-size:12px;color:#5E5580">mismo banner, distinto disparador — el color del marco es la señal</div></div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+
+      <div style="width:224px;background:#0B0018;border:2px solid #7FF9FF;box-shadow:5px 5px 0 rgba(127,249,255,.25);padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#7FF9FF;letter-spacing:.08em">01 · <span style="display:var(--om-es,inline)">DOLAR ENTERO</span><span style="display:var(--om-en,none)">WHOLE DOLLAR</span></div>
+        <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:26px;line-height:1;color:#fff;text-shadow:3px 3px 0 #FF2D6F">$12.08</div>
+        <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.65)"><span style="display:var(--om-es,inline)">TE QUEDAN · DOLAR 12</span><span style="display:var(--om-en,none)">LEFT · DOLLAR 12</span></div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:9px">Regla actual: <code style="color:#8E86A8">floor(total_usage)</code> cruza un entero.</div>
+      </div>
+
+      <div style="width:224px;background:#0B0018;border:2px solid #FFE600;box-shadow:5px 5px 0 rgba(255,230,0,.25);padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#FFE600;letter-spacing:.08em">02 · <span style="display:var(--om-es,inline)">SALDO BAJO</span><span style="display:var(--om-en,none)">LOW BALANCE</span></div>
+        <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:26px;line-height:1;color:#FFE600;text-shadow:3px 3px 0 #FF2D6F">$4.87</div>
+        <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.65)"><span style="display:var(--om-es,inline)">BAJO $5.00 · ~1.4 DIAS</span><span style="display:var(--om-en,none)">UNDER $5.00 · ~1.4 DAYS</span></div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:9px">Umbral configurable. Una sola vez por recarga.</div>
+      </div>
+
+      <div style="width:224px;background:#0B0018;border:2px solid #FF2D6F;box-shadow:5px 5px 0 rgba(255,45,111,.3);padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#FF2D6F;letter-spacing:.08em">03 · <span style="display:var(--om-es,inline)">PICO</span><span style="display:var(--om-en,none)">SPIKE</span></div>
+        <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:26px;line-height:1;color:#fff;text-shadow:3px 3px 0 #FF2D6F">$2.10</div>
+        <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.65)"><span style="display:var(--om-es,inline)">EN 1 H · 3.6× TU MEDIA</span><span style="display:var(--om-en,none)">IN 1 H · 3.6× YOUR AVG</span></div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:9px">Compara la ventana de 1 h contra el promedio de 7 d.</div>
+      </div>
+
+      <div style="width:224px;background:#0B0018;border:2px solid #A56BFF;box-shadow:5px 5px 0 rgba(165,107,255,.28);padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#A56BFF;letter-spacing:.08em">04 · <span style="display:var(--om-es,inline)">RESUMEN 21:00</span><span style="display:var(--om-en,none)">DAILY 21:00</span></div>
+        <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:26px;line-height:1;color:#fff;text-shadow:3px 3px 0 #A56BFF">$3.41</div>
+        <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.65)"><span style="display:var(--om-es,inline)">HOY · +18% VS AYER</span><span style="display:var(--om-en,none)">TODAY · +18% VS YEST.</span></div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:9px">Único envío programado; el resto son reactivos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── popover ── -->
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:17px;color:#FFE600">04 · POPOVER macOS</div><div style="font-size:12px;color:#5E5580">340 pt · misma IA que hoy, todo en plasma</div></div>
+
+    <div style="display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start">
+
+      <!-- home -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 widgets home" style="width:340px;background:#05000E;border:1px solid #2A1F44;border-radius:12px;overflow:hidden;box-shadow:0 26px 60px -18px rgba(0,0,0,.9)">
+          <div style="padding:16px 16px 12px;display:flex;flex-direction:column;gap:5px">
+            <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:20px;color:#fff;text-shadow:3px 3px 0 #FF2D6F">WIDGETS</div>
+            <div style="font-size:10.5px;letter-spacing:.06em;color:#5E5580">1 WIDGET · TODO EN VIVO</div>
+          </div>
+          <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px">
+            <div style="border:2px solid #7FF9FF;background:linear-gradient(180deg,rgba(43,184,255,.16),rgba(255,45,111,.07));box-shadow:4px 4px 0 rgba(255,45,111,.55);padding:12px;display:flex;align-items:center;gap:11px">
+              <div style="width:34px;height:34px;background:#7FF9FF;display:flex;align-items:flex-end;justify-content:center;gap:3px;padding-bottom:9px;box-sizing:border-box;flex:none">
+                <div style="width:4px;height:8px;background:#05000E"></div><div style="width:4px;height:14px;background:#05000E"></div><div style="width:4px;height:11px;background:#05000E"></div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+                <div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">OPENROUTER</div>
+                <div style="font-size:10.5px;color:#8E86A8">Saldo $12.08 · ~3.5 días</div>
+              </div>
+              <div style="width:8px;height:8px;background:#FFE600;animation:omPulse 1.4s steps(2,end) infinite;animation-play-state:var(--om-play,running)"></div>
+              <div style="font-family:'Silkscreen',monospace;font-size:11px;color:#7FF9FF">&gt;</div>
+            </div>
+          </div>
+          <div style="height:1px;background:#2A1F44"></div>
+          <div style="padding:12px 16px;font-family:'Silkscreen',monospace;font-size:9.5px;color:#5E5580">[Q] SALIR DE SALDOBAR</div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">WIDGETHOMEVIEW</div>
+      </div>
+
+      <!-- detalle -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-screen-label="v2 openrouter detalle" style="width:340px;background:#05000E;border:1px solid #2A1F44;border-radius:12px;overflow:hidden;box-shadow:0 26px 60px -18px rgba(0,0,0,.9)">
+          <div style="padding:10px 14px 6px;font-family:'Silkscreen',monospace;font-size:9.5px;color:#7FF9FF">&lt; WIDGETS</div>
+
+          <div style="position:relative;overflow:hidden;padding:14px 16px 18px">
+            <div style="position:absolute;inset:-40%;background-image:radial-gradient(circle at 25% 30%,rgba(43,184,255,.5),transparent 45%),radial-gradient(circle at 75% 70%,rgba(255,45,111,.45),transparent 45%);background-size:180% 180%,170% 170%;filter:blur(8px);animation:omPlasma 11s ease-in-out infinite;animation-play-state:var(--om-play,running)"></div>
+            <div style="position:absolute;inset:0;background:repeating-conic-gradient(rgba(5,0,14,.62) 0% 25%,rgba(0,0,0,0) 0% 50%);background-size:var(--om-dither,4px 4px)"></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:7px;font-family:'Silkscreen',monospace;font-size:8.5px;letter-spacing:.06em">
+                <div style="width:8px;height:8px;background:#7FF9FF"></div><span style="color:#fff">CONECTADO</span>
+                <div style="flex:1"></div><span style="color:rgba(255,255,255,.5)">HACE 14 S</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#fff;text-shadow:3px 3px 0 #FF2D6F,6px 6px 0 rgba(43,184,255,.5)">12.08</div>
+                <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#7FF9FF">RESTANTES</div>
+              </div>
+              <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.7)">DE $25.00 · 24 H $3.41 · ~3.5 D</div>
+            </div>
+          </div>
+
+          <div style="padding:0 12px 14px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:9px;border:2px solid rgba(127,249,255,.4);color:#E7E2F5;padding:9px 0">ACTUALIZAR</div>
+              <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:9px;background:#7FF9FF;color:#05000E;padding:9px 0;box-shadow:3px 3px 0 #FF2D6F">RECARGAR</div>
+            </div>
+
+            <div style="border:1px solid #2A1F44;padding:12px;display:flex;flex-direction:column;gap:11px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;letter-spacing:.1em;color:#FFE600">CONSUMO</div>
+              <div style="display:flex;gap:4px">
+                <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:8px;padding:6px 0;border:1px solid #2A1F44;color:#5E5580">1H</div>
+                <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:8px;padding:6px 0;border:1px solid #2A1F44;color:#5E5580">12H</div>
+                <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:8px;padding:6px 0;background:#FFE600;color:#05000E;border:1px solid #FFE600">24H</div>
+                <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:8px;padding:6px 0;border:1px solid #2A1F44;color:#5E5580">7D</div>
+                <div style="flex:1;text-align:center;font-family:'Silkscreen',monospace;font-size:8px;padding:6px 0;border:1px solid #2A1F44;color:#5E5580">30D</div>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:28px;line-height:1;color:#fff">3.41</div>
+                <div style="font-size:10px;line-height:1.7;color:#8E86A8">consumido en 24 h<br>≈ $3.41 por día</div>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:8px;height:56px">
+                <sc-for list="{{ barsTall }}" as="b" hint-placeholder-count="14">
+                  <div style="width:12px;min-height:3px;background:{{ b.c }};height:{{ b.h }}"></div>
+                </sc-for>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-family:'Silkscreen',monospace;font-size:7.5px;color:#5E5580"><span>-14 D</span><span>HOY</span></div>
+            </div>
+
+            <div style="border:1px solid #2A1F44;padding:12px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;letter-spacing:.1em;color:#FFE600">NOTICIAS</div>
+              <div style="display:flex;align-items:center;gap:9px">
+                <div style="width:7px;height:7px;background:#FF2D6F;flex:none"></div>
+                <div style="flex:1;font-size:11px;color:#E7E2F5">Consumido $12 <span style="color:#5E5580">· total $12.92</span></div>
+                <div style="font-family:'Silkscreen',monospace;font-size:7.5px;color:#5E5580">14 S</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;opacity:.55">
+                <div style="width:7px;height:7px;border:1px solid #3A2C5E;flex:none"></div>
+                <div style="flex:1;font-size:11px;color:#E7E2F5">Consumido $11 <span style="color:#5E5580">· total $11.04</span></div>
+                <div style="font-family:'Silkscreen',monospace;font-size:7.5px;color:#5E5580">2 H</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;opacity:.55">
+                <div style="width:7px;height:7px;border:1px solid #3A2C5E;flex:none"></div>
+                <div style="flex:1;font-size:11px;color:#E7E2F5">Consumido $10 <span style="color:#5E5580">· total $10.16</span></div>
+                <div style="font-family:'Silkscreen',monospace;font-size:7.5px;color:#5E5580">5 H</div>
+              </div>
+            </div>
+
+            <div style="border:1px solid #2A1F44;padding:12px;display:flex;flex-direction:column;gap:11px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;letter-spacing:.1em;color:#FFE600">CONEXIÓN</div>
+              <div style="display:flex;gap:8px">
+                <div style="flex:1;background:#0B0018;border:1px solid #2A1F44;padding:7px 9px;font-size:11px;letter-spacing:1px;color:#8E86A8">••••••••••••</div>
+                <div style="background:#7FF9FF;color:#05000E;font-family:'Silkscreen',monospace;font-size:8.5px;padding:0 12px;display:flex;align-items:center">OK</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:10px;color:#7FF9FF"><div style="width:8px;height:8px;background:#7FF9FF"></div><span>Guardada en Keychain</span></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;font-size:11px;color:#8E86A8">Intervalo</div>
+                <div style="border:1px solid #2A1F44;padding:5px 10px;font-family:'Silkscreen',monospace;font-size:8.5px;color:#E7E2F5">1 MIN ▾</div>
+              </div>
+            </div>
+
+            <div style="border:2px solid #7FF9FF;box-shadow:4px 4px 0 rgba(255,45,111,.5);padding:12px;display:flex;flex-direction:column;gap:11px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="font-family:'Silkscreen',monospace;font-size:8.5px;letter-spacing:.1em;color:#7FF9FF;flex:1">RELOJ · NTFY</div>
+                <div style="width:30px;height:14px;background:#7FF9FF;display:flex;align-items:center;justify-content:flex-end;padding:1px"><div style="width:12px;height:12px;background:#05000E"></div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;background:#0B0018;border:1px solid #2A1F44;padding:7px 9px;font-size:10.5px;color:#E7E2F5">saldobar-7f3a91</div>
+                <div style="border:1px solid #2A1F44;padding:7px 9px;font-family:'Silkscreen',monospace;font-size:8px;color:#8E86A8">QR</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px"><div style="width:7px;height:7px;background:#7FF9FF"></div><div style="flex:1;font-size:10.5px;color:#E7E2F5">Cada dólar consumido</div></div>
+                <div style="display:flex;align-items:center;gap:8px"><div style="width:7px;height:7px;background:#FFE600"></div><div style="flex:1;font-size:10.5px;color:#E7E2F5">Saldo bajo</div><div style="font-family:'Silkscreen',monospace;font-size:8px;color:#8E86A8">$5.00</div></div>
+                <div style="display:flex;align-items:center;gap:8px"><div style="width:7px;height:7px;background:#FF2D6F"></div><div style="flex:1;font-size:10.5px;color:#E7E2F5">Pico de consumo</div><div style="font-family:'Silkscreen',monospace;font-size:8px;color:#8E86A8">3×</div></div>
+                <div style="display:flex;align-items:center;gap:8px;opacity:.45"><div style="width:7px;height:7px;border:1px solid #3A2C5E"></div><div style="flex:1;font-size:10.5px;color:#E7E2F5">Resumen diario</div><div style="font-family:'Silkscreen',monospace;font-size:8px;color:#8E86A8">21:00</div></div>
+              </div>
+              <div style="text-align:center;font-family:'Silkscreen',monospace;font-size:9px;background:#FFE600;color:#05000E;padding:9px 0">PROBAR EN EL RELOJ</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580;text-align:center">OPENROUTERWIDGETVIEW + SECCIÓN RELOJ</div>
+      </div>
+
+      <!-- notas de sistema -->
+      <div style="width:300px;display:flex;flex-direction:column;gap:20px;display:var(--om-note,flex)">
+        <div style="font-family:'Silkscreen',monospace;font-size:11px;color:#FFE600">NOTAS DE SISTEMA</div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:11.5px;line-height:1.8;color:#8E86A8">
+          <div><span style="color:#7FF9FF">Tipografía.</span> Silkscreen solo para números, etiquetas y títulos; nunca para texto corrido. Piso de 8 px en la Mac, 8.5 px en el reloj. Todo lo que se lee en frases va en IBM Plex Mono.</div>
+          <div><span style="color:#7FF9FF">Trama.</span> Dither de 4 px sobre el plasma, nunca sobre texto chico. Se apaga entero en always-on: a 42 % de brillo la trama se come los glifos.</div>
+          <div><span style="color:#7FF9FF">Sombra.</span> Desplazamiento duro de 3-4 px, siempre magenta sobre cian y magenta sobre blanco. Cero blur, cero radio — el único radio del sistema es el del hardware.</div>
+          <div><span style="color:#7FF9FF">Color como señal.</span> Cian = normal, amarillo = atención, magenta = urgente, violeta = programado. El marco de la notificación lleva ese color; el número queda blanco salvo en saldo bajo.</div>
+          <div><span style="color:#7FF9FF">Movimiento.</span> El plasma deriva en 9 s; los parpadeos van en <code style="color:#E7E2F5">steps()</code>, nunca suaves. En el reloj solo se anima el banner: la cara y la complicación son estáticas por batería.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;es&quot;,&quot;en&quot;],&quot;default&quot;:&quot;es&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contenido&quot;},&quot;dither&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fino&quot;,&quot;medio&quot;,&quot;grueso&quot;],&quot;default&quot;:&quot;medio&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Dirección&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentación&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentación&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null };
+
+  get lang() { return this.state.lang ?? this.props.lang ?? 'es'; }
+
+  sync() {
+    const r = document.documentElement.style;
+    const es = this.lang === 'es';
+    r.setProperty('--om-es', es ? 'inline' : 'none');
+    r.setProperty('--om-en', es ? 'none' : 'inline');
+    r.setProperty('--om-play', (this.props.motion ?? true) ? 'running' : 'paused');
+    r.setProperty('--om-note', (this.props.showNotes ?? true) ? 'flex' : 'none');
+    const d = this.props.dither ?? 'medio';
+    r.setProperty('--om-dither', d === 'fino' ? '3px 3px' : d === 'grueso' ? '6px 6px' : '4px 4px');
+  }
+
+  componentDidMount() { this.sync(); }
+  componentDidUpdate() { this.sync(); }
+
+  renderVals() {
+    const vals = [1.2, 0.4, 2.1, 3.0, 0.9, 1.8, 4.2, 2.6, 0.3, 1.1, 3.4, 2.2, 1.6, 3.41];
+    const max = 4.2;
+    const duo = (i) => (i % 2 ? '#7FF9FF' : '#FF2D6F');
+    const series = (arr, cap) => arr.map((v, i) => ({
+      h: Math.max(3, Math.round(v / max * cap)) + 'px',
+      c: duo(i)
+    }));
+
+    return {
+      bars: series(vals, 34),
+      barsTall: series(vals, 48),
+      spark: series(vals.slice(4), 30),
+      toggleLang: () => this.setState({ lang: this.lang === 'es' ? 'en' : 'es' })
+    };
+  }
+}
+</script>
+</body>
+</html>

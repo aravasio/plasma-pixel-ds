@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#05000E;color:#E7E2F5;font-family:'IBM Plex Mono',ui-monospace,monospace;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:#7FF9FF;text-decoration:none;border-bottom:1px solid rgba(127,249,255,.4)}
+  a:hover{color:#FFE600;border-bottom-color:#FFE600}
+  @keyframes omHue4{0%{color:#FF2D6F}25%{color:#FFE600}50%{color:#7FF9FF}75%{color:#A56BFF}100%{color:#FF2D6F}}
+  @keyframes omHueSmooth{0%{color:#FF2D6F}16%{color:#FF8A00}33%{color:#FFE600}50%{color:#37F5A0}66%{color:#7FF9FF}83%{color:#A56BFF}100%{color:#FF2D6F}}
+  @keyframes omSweep{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+  @keyframes omCopperV{0%{background-position:50% 0}100%{background-position:50% -72px}}
+  @keyframes omWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+  @keyframes omInvert{0%,49%{filter:none}50%,100%{filter:invert(1)}}
+  @keyframes omWobble{0%,100%{transform:translateX(0) skewX(0deg)}25%{transform:translateX(-1px) skewX(-6deg)}75%{transform:translateX(1px) skewX(6deg)}}
+  @keyframes omBounce{0%,100%{transform:translateY(0)}45%{transform:translateY(-2.5px)}}
+  @keyframes omSteam{0%{transform:translateY(0) scaleY(.6);opacity:0}35%{opacity:.75}100%{transform:translateY(-9px) scaleY(1.25);opacity:0}}
+  @keyframes omScroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+  @keyframes omBlink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+  @keyframes omFlick{0%,100%{opacity:.88}40%{opacity:1}70%{opacity:.94}}
+  @keyframes omEq{0%,100%{height:3px}50%{height:11px}}
+  @keyframes omBands{0%{background-position:0 0}100%{background-position:0 -30px}}
+  @keyframes omBandsWide{0%{background-position:0 0}100%{background-position:0 -44px}}
+  @keyframes omBandsTight{0%{background-position:0 0}100%{background-position:0 -18px}}
+  @keyframes omWobbleSoft{0%,100%{transform:skewX(0deg) translateX(0)}50%{transform:skewX(-2.5deg) translateX(.5px)}}
+  @keyframes omGhostSoft{0%,100%{transform:translateX(1px)}50%{transform:translateX(-1px)}}
+  @keyframes omGhost{0%,100%{text-shadow:1.5px 0 #FF2D6F,-1.5px 0 #7FF9FF}50%{text-shadow:-1.5px 0 #FF2D6F,1.5px 0 #7FF9FF}}
+</style>
+</helmet>
+
+<section style="padding:56px 60px 0;display:flex;flex-direction:column;gap:34px">
+
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+    <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#7FF9FF">Turno 4 · la mezcla</div>
+    <h2 style="margin:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:26px;line-height:1.25;color:#fff;text-shadow:3px 3px 0 #FF2D6F,6px 6px 0 rgba(43,184,255,.5)">SUAVE + LOCO<br>+ COPPER BARS</h2>
+    <p style="margin:0;font-size:12.5px;line-height:1.85;color:#8E86A8">Las bandas cobre de <a href="#3h">3h</a> pierden los cortes duros y pasan a ser un degradé continuo que deriva hacia arriba — ahí está <a href="#3d">3d</a>. Encima, la aberración cromática de <a href="#3e">3e</a>, bajada a dos fantasmas de 1 px y una inclinación lenta. Una sola palabra, un solo color por instante, y aun así nunca queda quieta. Tres intensidades del mismo mecanismo.</p>
+  </div>
+
+  <div style="display:flex;gap:26px;flex-wrap:wrap">
+
+    <!-- 4a -->
+    <div id="4a" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#7FF9FF;color:#05000E;padding:5px 8px">4a</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">CALMA</div><div style="font-size:10.5px;color:#8E86A8">·  bandas anchas, sin fantasma</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 44px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBandsWide 5s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3)">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 44px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBandsWide 5s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Una banda de 44 px sobre un bloque de 19 px: en cualquier instante el wordmark tiene casi un solo color, y ese color cambia entero cada 5 s. Es <a href="#3d">3d</a> con el degradé puesto en vertical.</div>
+    </div>
+
+    <!-- 4b -->
+    <div id="4b" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:linear-gradient(90deg,#FFE600,#FF2D6F);color:#05000E;padding:5px 8px">4b</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">EL MIX</div><div style="font-size:10.5px;color:#FFE600">·  recomendada</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="position:relative;animation:omWobbleSoft 3.4s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#FF2D6F;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#7FF9FF;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:relative;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 30px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBands 3s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3)">
+          <div style="position:relative;animation:omWobbleSoft 3.4s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#FF2D6F;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#7FF9FF;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+            <div style="position:relative;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 30px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBands 3s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Banda de 30 px, dos fantasmas de 1 px que se cruzan cada 2,1 s y una inclinación de 2,5° cada 3,4 s. Los tres ciclos son primos entre sí: el patrón exacto no se repite nunca, pero nada se mueve rápido.</div>
+    </div>
+
+    <!-- 4c -->
+    <div id="4c" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#FF2D6F;color:#05000E;padding:5px 8px">4c</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">AL MÁXIMO</div><div style="font-size:10.5px;color:#8E86A8">·  bandas de 18 px, 1,2 s</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="position:relative;animation:omWobble 2.2s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#FF2D6F;transform:translateX(2px)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#7FF9FF;transform:translateX(-2px)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:relative;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 18px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBandsTight 1.2s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3)">
+          <div style="position:relative;animation:omWobble 2.2s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#FF2D6F;transform:translateX(2px)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#7FF9FF;transform:translateX(-2px)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+            <div style="position:relative;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 18px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBandsTight 1.2s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Dos bandas completas dentro del bloque y fantasmas fijos de 2 px: acá sí vuelve a leerse como arcoíris y el texto empieza a vibrar. Es el techo — más que esto es <a href="#3e">3e</a>.</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;padding-bottom:8px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:'Silkscreen',monospace;font-size:10px;color:#5E5580">4B EN BARRA CLARA</div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#E8E2F2,#D6E4F0);border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="position:relative;animation:omWobbleSoft 3.4s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#C4004F;opacity:.6;animation:omGhostSoft 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#0090A8;opacity:.6;animation:omGhostSoft 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="position:relative;display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background-image:linear-gradient(180deg,#C4004F 0%,#A34A00 17%,#7A6A00 34%,#0A7A4E 50%,#0090A8 67%,#5B2BC4 84%,#C4004F 100%);background-size:100% 30px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omBands 3s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(0,0,0,.8)">14:32</div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8;width:352px">Mismos seis tonos, luminosidad bajada: el mecanismo sobrevive el cambio de fondo sin tocar la estructura.</div>
+    </div>
+    <div style="width:352px;font-size:11.5px;line-height:1.85;color:#8E86A8">
+      <span style="color:#7FF9FF">Por qué funciona la mezcla.</span> Las tres ideas atacaban capas distintas: <a href="#3h">3h</a> el relleno del glifo, <a href="#3d">3d</a> el ritmo del color, <a href="#3e">3e</a> la geometría. Apiladas no compiten. Lo único que hay que cuidar es que el ciclo de banda nunca baje de 3 s: por debajo de eso el ojo lo lee como parpadeo y la barra de menú deja de ser un lugar donde se puede trabajar.
+    </div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,#2A1F44,transparent);margin-top:8px"></div>
+</section>
+
+<section style="padding:22px 60px 110px;display:flex;flex-direction:column;gap:56px">
+
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:680px">
+      <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#7FF9FF">Turno 3 · SaldoBar · laboratorio</div>
+      <h1 style="margin:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:40px;line-height:1.2;color:#fff;text-shadow:4px 4px 0 #FF2D6F,8px 8px 0 rgba(43,184,255,.5)">BARRA DE<br>MENÚ · 12</h1>
+      <p style="margin:0;font-size:13px;line-height:1.85;color:#8E86A8">Doce tratamientos para el estado <strong style="color:#E7E2F5;font-weight:600">con noticias</strong> de <code style="color:#7FF9FF">NewsLabel.swift</code>. Cada uno a tamaño real sobre la barra (26 pt) y ampliado ×3. Restricción dura: en la barra sólo controlás el label — el fondo es del sistema y cambia con el fondo de pantalla, así que abajo está la prueba sobre barra clara.</p>
+    </div>
+    <button onClick="{{ togglePlay }}" style="font-family:'Silkscreen',monospace;font-size:11px;color:#05000E;background:#7FF9FF;border:0;padding:11px 16px;cursor:pointer;box-shadow:4px 4px 0 #FF2D6F;height:fit-content" style-hover="background:#FFE600;box-shadow:4px 4px 0 #A56BFF">
+      {{ playLabel }}
+    </button>
+  </div>
+
+  <!-- estado quieto -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:15px;color:#FFE600">ESTADO QUIETO</div><div style="font-size:11.5px;color:#8E86A8">el 95 % del tiempo se ve esto — cualquiera de los doce tiene que convivir con él</div></div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-size:9.5px;font-weight:300;font-style:italic;letter-spacing:1.2px;line-height:8px;color:rgba(255,255,255,.4)"><div>you've got</div><div>no mail</div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;color:#8E86A8">actual · susurro redondeado</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-size:6.5px;line-height:9px;color:rgba(255,255,255,.35)"><div>you've got</div><div>no mail</div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;color:#8E86A8">pixel · mismo susurro, misma familia que el resto</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px">
+          <div style="display:flex;align-items:center;gap:5px"><div style="width:5px;height:5px;background:rgba(255,255,255,.28)"></div><div style="font-family:'Silkscreen',monospace;font-size:6.5px;color:rgba(255,255,255,.32)">$12.08</div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;color:#8E86A8">dato · el saldo siempre visible, sin frase</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,#2A1F44,transparent)"></div>
+
+  <!-- 12 variantes -->
+  <div style="display:flex;gap:26px;flex-wrap:wrap">
+
+    <!-- 3a MONOKAI -->
+    <div id="3a" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#F92672;color:#272822;padding:5px 8px">3a</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">MONOKAI</div><div style="font-size:10.5px;color:#8E86A8">·  editor, no fiesta</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:8px;line-height:9.5px;letter-spacing:.02em">
+          <div style="color:#A6E22E">YOU'VE GOT</div>
+          <div style="color:#F92672">NEWS<span style="color:#66D9EF;animation:omBlink 1s steps(1,end) infinite;animation-play-state:var(--om-play,running)">_</span></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#272822;border:1px solid #3E3D32;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;flex-direction:column;align-items:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:8px;line-height:9.5px">
+          <div style="color:#A6E22E">YOU'VE GOT</div>
+          <div style="color:#F92672">NEWS<span style="color:#66D9EF;animation:omBlink 1s steps(1,end) infinite;animation-play-state:var(--om-play,running)">_</span></div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Paleta de editor: verde para el sujeto, rosa para el evento, cursor cian parpadeando. Cero animación de color — sobrevive ocho horas al lado del código.</div>
+    </div>
+
+    <!-- 3b BRUTALISTA -->
+    <div id="3b" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#fff;color:#000;padding:5px 8px">3b</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">BRUTALISTA</div><div style="font-size:10.5px;color:#8E86A8">·  bloque, sin color</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="background:#fff;padding:2px 4px;animation:omInvert 1.4s steps(1,end) infinite;animation-play-state:var(--om-play,running)">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Archivo Black',sans-serif;font-size:8px;line-height:8.5px;letter-spacing:-.02em;color:#000"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#0A0A0A;border:1px solid #2A2A2A;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);background:#fff;padding:2px 4px;animation:omInvert 1.4s steps(1,end) infinite;animation-play-state:var(--om-play,running)">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:'Archivo Black',sans-serif;font-size:8px;line-height:8.5px;color:#000"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Rectángulo blanco sólido que se invierte a negro cada 1,4 s en <code style="color:#E7E2F5">steps(1)</code>. Es la única que se ve de reojo desde el otro lado del escritorio. También la más difícil de ignorar — a propósito.</div>
+    </div>
+
+    <!-- 3c PSICODÉLICO -->
+    <div id="3c" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:linear-gradient(90deg,#FF2D6F,#A56BFF);color:#05000E;padding:5px 8px">3c</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">PSICODÉLICO</div><div style="font-size:10.5px;color:#8E86A8">·  onda + tono por letra</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:700;font-size:9.5px;line-height:9px">
+          <div style="display:flex">
+            <sc-for list="{{ line1 }}" as="c" hint-placeholder-count="10">
+              <span style="animation:omHueSmooth 5s linear infinite,omWave 1.6s ease-in-out infinite;animation-delay:{{ c.d }};animation-play-state:var(--om-play,running);display:inline-block;min-width:1px">{{ c.t }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex">
+            <sc-for list="{{ line2 }}" as="c" hint-placeholder-count="4">
+              <span style="animation:omHueSmooth 5s linear infinite,omWave 1.6s ease-in-out infinite;animation-delay:{{ c.d }};animation-play-state:var(--om-play,running);display:inline-block;min-width:1px">{{ c.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#100522;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:700;font-size:9.5px;line-height:9px">
+          <div style="display:flex">
+            <sc-for list="{{ line1 }}" as="c" hint-placeholder-count="10">
+              <span style="animation:omHueSmooth 5s linear infinite,omWave 1.6s ease-in-out infinite;animation-delay:{{ c.d }};animation-play-state:var(--om-play,running);display:inline-block;min-width:1px">{{ c.t }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex">
+            <sc-for list="{{ line2 }}" as="c" hint-placeholder-count="4">
+              <span style="animation:omHueSmooth 5s linear infinite,omWave 1.6s ease-in-out infinite;animation-delay:{{ c.d }};animation-play-state:var(--om-play,running);display:inline-block;min-width:1px">{{ c.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Lo que hay hoy, más una onda vertical desfasada por letra. El texto respira; el desfase hace que nunca se lea como un bloque.</div>
+    </div>
+
+    <!-- 3d SUAVE -->
+    <div id="3d" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#7FF9FF;color:#05000E;padding:5px 8px">3d</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">SUAVE</div><div style="font-size:10.5px;color:#8E86A8">·  un solo degradé que barre</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:700;font-size:9.5px;line-height:9px;background:linear-gradient(90deg,#7FF9FF,#A56BFF,#FF2D6F,#FFE600,#7FF9FF);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omSweep 7s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#100522;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:700;font-size:9.5px;line-height:9px;background:linear-gradient(90deg,#7FF9FF,#A56BFF,#FF2D6F,#FFE600,#7FF9FF);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omSweep 7s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Un degradé continuo cruzando las dos líneas, 7 s por vuelta. Las letras nunca se separan en colores distintos: se lee como palabra, no como arcoíris.</div>
+    </div>
+
+    <!-- 3e MÁS LOCO -->
+    <div id="3e" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#FFE600;color:#05000E;padding:5px 8px">3e</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">MÁS LOCO</div><div style="font-size:10.5px;color:#8E86A8">·  aberración + bamboleo</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="animation:omWobble 2.2s ease-in-out infinite;animation-play-state:var(--om-play,running);display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#fff">
+          <div style="animation:omGhost 1.1s steps(2,end) infinite;animation-play-state:var(--om-play,running)">YOU'VE GOT</div>
+          <div style="animation:omGhost 1.1s steps(2,end) infinite -.55s;animation-play-state:var(--om-play,running)">NEWS</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3)">
+          <div style="animation:omWobble 2.2s ease-in-out infinite;animation-play-state:var(--om-play,running);display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;color:#fff">
+            <div style="animation:omGhost 1.1s steps(2,end) infinite;animation-play-state:var(--om-play,running)">YOU'VE GOT</div>
+            <div style="animation:omGhost 1.1s steps(2,end) infinite -.55s;animation-play-state:var(--om-play,running)">NEWS</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Blanco con fantasma magenta/cian que salta de lado en <code style="color:#E7E2F5">steps(2)</code>, y todo el bloque se inclina. Señal VHS rota. Divertidísima diez minutos; preguntale a tu yo del jueves.</div>
+    </div>
+
+    <!-- 3f CUTE -->
+    <div id="3f" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#FFB3D1;color:#3A1E2C;padding:5px 8px">3f</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">CUTE</div><div style="font-size:10.5px;color:#8E86A8">·  pastel, rebote corto</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#FFB3D1;animation:omBounce 1.5s ease-in-out infinite;animation-play-state:var(--om-play,running)"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:600;font-size:9px;line-height:9px">
+            <div style="color:#FFD9E8">you've got</div>
+            <div style="color:#B8F2E6;animation:omBounce 1.5s ease-in-out infinite -.2s;animation-play-state:var(--om-play,running)">news!</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#241C33;border:1px solid #3A2C5E;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#FFB3D1;animation:omBounce 1.5s ease-in-out infinite;animation-play-state:var(--om-play,running)"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:600;font-size:9px;line-height:9px">
+            <div style="color:#FFD9E8">you've got</div>
+            <div style="color:#B8F2E6;animation:omBounce 1.5s ease-in-out infinite -.2s;animation-play-state:var(--om-play,running)">news!</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Minúsculas, rosa y menta, un punto que rebota. La única que suaviza la noticia — y gastar plata es justo lo que quizás no querés suavizar.</div>
+    </div>
+
+    <!-- 3g CAFÉ -->
+    <div id="3g" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#C08A5A;color:#2B1D14;padding:5px 8px">3g</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">CAFÉ</div><div style="font-size:10.5px;color:#8E86A8">·  crema, vapor, calma</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;align-items:flex-end;gap:5px">
+          <div style="display:flex;gap:2px;align-items:flex-end;height:14px;padding-bottom:1px">
+            <div style="width:1.5px;height:6px;background:#EDE0D0;animation:omSteam 2.6s ease-out infinite;animation-play-state:var(--om-play,running)"></div>
+            <div style="width:1.5px;height:6px;background:#EDE0D0;animation:omSteam 2.6s ease-out infinite -1.1s;animation-play-state:var(--om-play,running)"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:8px;line-height:9.5px;letter-spacing:.06em">
+            <div style="color:#EDE0D0">you've got</div>
+            <div style="color:#C08A5A;border-bottom:1px solid #C08A5A">news</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#2B1D14;border:1px solid #4A3527;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;align-items:flex-end;gap:5px">
+          <div style="display:flex;gap:2px;align-items:flex-end;height:14px;padding-bottom:1px">
+            <div style="width:1.5px;height:6px;background:#EDE0D0;animation:omSteam 2.6s ease-out infinite;animation-play-state:var(--om-play,running)"></div>
+            <div style="width:1.5px;height:6px;background:#EDE0D0;animation:omSteam 2.6s ease-out infinite -1.1s;animation-play-state:var(--om-play,running)"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:8px;line-height:9.5px;letter-spacing:.06em">
+            <div style="color:#EDE0D0">you've got</div>
+            <div style="color:#C08A5A;border-bottom:1px solid #C08A5A">news</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Crema sobre espresso, subrayado caramelo y dos hilos de vapor subiendo cada 2,6 s. El movimiento existe pero no pide nada: te enterás cuando levantás la vista.</div>
+    </div>
+
+    <!-- 3h COPPER -->
+    <div id="3h" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:linear-gradient(180deg,#FFE600,#FF8A00);color:#05000E;padding:5px 8px">3h</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">COPPER BARS</div><div style="font-size:10.5px;color:#8E86A8">·  bandas dentro de la letra</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background:repeating-linear-gradient(180deg,#FF2D6F 0 3px,#FF8A00 3px 6px,#FFE600 6px 9px,#37F5A0 9px 12px,#7FF9FF 12px 15px,#A56BFF 15px 18px);-webkit-background-clip:text;background-clip:text;color:transparent;animation:omCopperV 3s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background:repeating-linear-gradient(180deg,#FF2D6F 0 3px,#FF8A00 3px 6px,#FFE600 6px 9px,#37F5A0 9px 12px,#7FF9FF 12px 15px,#A56BFF 15px 18px);-webkit-background-clip:text;background-clip:text;color:transparent;animation:omCopperV 3s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Las barras cobre del Amiga corriendo <em>dentro</em> de los glifos en vez de detrás. Es la cita más literal a la demoscene y la que mejor aguanta a 7 px.</div>
+    </div>
+
+    <!-- 3i SCROLLER -->
+    <div id="3i" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#37F5A0;color:#05000E;padding:5px 8px">3i</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">SCROLLER</div><div style="font-size:10.5px;color:#8E86A8">·  una línea, texto que corre</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="width:112px;overflow:hidden;height:12px;display:flex;align-items:center">
+          <div style="white-space:nowrap;font-family:'Silkscreen',monospace;font-size:7px;color:#37F5A0;animation:omScroll 9s linear infinite;animation-play-state:var(--om-play,running)">*** YOU'VE GOT NEWS *** $12.08 RESTANTES *** DOLAR 12 ***</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);width:112px;overflow:hidden;height:12px;display:flex;align-items:center">
+          <div style="white-space:nowrap;font-family:'Silkscreen',monospace;font-size:7px;color:#37F5A0;animation:omScroll 9s linear infinite;animation-play-state:var(--om-play,running)">*** YOU'VE GOT NEWS *** $12.08 RESTANTES *** DOLAR 12 ***</div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Scrolltext de intro: una sola línea que cuenta más de lo que entra. Gana altura y dice el saldo — pero obliga a esperar a que pase el dato que te importa.</div>
+    </div>
+
+    <!-- 3j FUEGO -->
+    <div id="3j" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:linear-gradient(180deg,#FFE600,#FF2D00);color:#05000E;padding:5px 8px">3j</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">FUEGO</div><div style="font-size:10.5px;color:#8E86A8">·  quema plata, quema letra</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background:linear-gradient(180deg,#FFF2A8 0%,#FFE600 30%,#FF8A00 62%,#FF2D00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:omFlick 260ms steps(3,end) infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#140400;border:1px solid #3A1200;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;flex-direction:column;align-items:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;background:linear-gradient(180deg,#FFF2A8 0%,#FFE600 30%,#FF8A00 62%,#FF2D00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:omFlick 260ms steps(3,end) infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Degradé de llama fijo, con un parpadeo de opacidad de 260 ms en tres pasos. La metáfora es exacta: <em>burn rate</em>. Sube de temperatura si querés atarlo al ritmo de gasto.</div>
+    </div>
+
+    <!-- 3k MÍNIMO -->
+    <div id="3k" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#8E86A8;color:#05000E;padding:5px 8px">3k</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">MÍNIMO</div><div style="font-size:10.5px;color:#8E86A8">·  un punto y un número</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;background:#FF2D6F;animation:omBlink 2s steps(1,end) infinite;animation-play-state:var(--om-play,running)"></div>
+          <div style="font-family:'Silkscreen',monospace;font-size:7px;color:rgba(255,255,255,.92)">$12.08</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#100522;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;background:#FF2D6F;animation:omBlink 2s steps(1,end) infinite;animation-play-state:var(--om-play,running)"></div>
+          <div style="font-family:'Silkscreen',monospace;font-size:7px;color:rgba(255,255,255,.92)">$12.08</div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Sin frase: punto magenta parpadeando y el saldo. La noticia es el número. Ocupa la mitad de ancho y nunca compite con el resto de la barra.</div>
+    </div>
+
+    <!-- 3l ECUALIZADOR -->
+    <div id="3l" style="width:352px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:9px"><div style="font-family:'Silkscreen',monospace;font-size:10px;background:#A56BFF;color:#05000E;padding:5px 8px">3l</div><div style="font-family:'Silkscreen',monospace;font-size:11px;color:#fff">ECUALIZADOR</div><div style="font-size:10.5px;color:#8E86A8">·  el gasto como VU meter</div></div>
+      <div style="width:352px;height:26px;background:linear-gradient(90deg,#241A3A,#12203A);border:1px solid #2A1F44;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:5px">
+          <div style="display:flex;align-items:flex-end;gap:1.5px;height:12px">
+            <sc-for list="{{ eq }}" as="e" hint-placeholder-count="8">
+              <div style="width:2px;background:{{ e.c }};height:4px;animation:omEq 900ms ease-in-out infinite;animation-delay:{{ e.d }};animation-play-state:var(--om-play,running)"></div>
+            </sc-for>
+          </div>
+          <div style="font-family:'Silkscreen',monospace;font-size:6.5px;color:#A56BFF;line-height:8px">NEWS</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">14:32</div>
+      </div>
+      <div style="height:96px;background:#100522;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="transform:scale(3);display:flex;align-items:center;gap:5px">
+          <div style="display:flex;align-items:flex-end;gap:1.5px;height:12px">
+            <sc-for list="{{ eq }}" as="e" hint-placeholder-count="8">
+              <div style="width:2px;background:{{ e.c }};height:4px;animation:omEq 900ms ease-in-out infinite;animation-delay:{{ e.d }};animation-play-state:var(--om-play,running)"></div>
+            </sc-for>
+          </div>
+          <div style="font-family:'Silkscreen',monospace;font-size:6.5px;color:#A56BFF;line-height:8px">NEWS</div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;color:#8E86A8">Ocho barras que bailan mientras hay noticias sin leer y se aplanan al leerlas. Ninguna letra: el estado es puro movimiento. Atarlas al consumo por hora sería casi gratis.</div>
+    </div>
+
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,#2A1F44,transparent)"></div>
+
+  <!-- barra clara -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'Silkscreen',monospace;font-size:15px;color:#FFE600">PRUEBA DE BARRA CLARA</div><div style="font-size:11.5px;color:#8E86A8">las cuatro más claras, sobre un fondo de pantalla claro</div></div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap">
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#E8E2F2,#D6E4F0);border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+          <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:700;font-size:9.5px;line-height:9px;background:linear-gradient(90deg,#0090A8,#5B2BC4,#C4004F,#8A6A00,#0090A8);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omSweep 7s linear infinite;animation-play-state:var(--om-play,running)"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          <div style="font-size:11px;color:rgba(0,0,0,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8"><a href="#3d">3d</a> suave — el degradé baja luminosidad, mantiene los tonos</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#E8E2F2,#D6E4F0);border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="width:6px;height:6px;border-radius:50%;background:#D6407F;animation:omBounce 1.5s ease-in-out infinite;animation-play-state:var(--om-play,running)"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;font-family:ui-rounded,-apple-system,sans-serif;font-weight:600;font-size:9px;line-height:9px">
+              <div style="color:#A03060">you've got</div>
+              <div style="color:#1E8F7E">news!</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:rgba(0,0,0,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8"><a href="#3f">3f</a> cute — pastel no existe en claro: hay que ir al tono saturado</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#E8E2F2,#D6E4F0);border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+          <div style="display:flex;align-items:flex-end;gap:5px">
+            <div style="display:flex;gap:2px;align-items:flex-end;height:14px;padding-bottom:1px">
+              <div style="width:1.5px;height:6px;background:#8A6A52;animation:omSteam 2.6s ease-out infinite;animation-play-state:var(--om-play,running)"></div>
+              <div style="width:1.5px;height:6px;background:#8A6A52;animation:omSteam 2.6s ease-out infinite -1.1s;animation-play-state:var(--om-play,running)"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:8px;line-height:9.5px;letter-spacing:.06em">
+              <div style="color:#3D2A1C">you've got</div>
+              <div style="color:#8A5A2E;border-bottom:1px solid #8A5A2E">news</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:rgba(0,0,0,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8"><a href="#3g">3g</a> café — se invierte entero: espresso sobre crema</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="width:300px;height:26px;background:linear-gradient(90deg,#E8E2F2,#D6E4F0);border:1px solid rgba(0,0,0,.14);display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 12px;box-sizing:border-box">
+          <div style="background:#000;padding:2px 4px">
+            <div style="display:flex;flex-direction:column;align-items:center;font-family:'Archivo Black',sans-serif;font-size:8px;line-height:8.5px;color:#fff"><div>YOU'VE GOT</div><div>NEWS</div></div>
+          </div>
+          <div style="font-size:11px;color:rgba(0,0,0,.8)">14:32</div>
+        </div>
+        <div style="font-size:10.5px;line-height:1.7;color:#8E86A8"><a href="#3b">3b</a> brutalista — el bloque ya alterna, así que en claro simplemente arranca en negro</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+    <div style="font-family:'Silkscreen',monospace;font-size:15px;color:#FFE600">DÓNDE ME PARO</div>
+    <div style="font-size:12.5px;line-height:1.9;color:#8E86A8"><a href="#3h">3h</a> copper bars es la que mejor cumple las tres cosas a la vez: es demoscene de verdad, es legible a 7 px y no depende del color del fondo porque las bandas cubren todo el rango tonal. <a href="#3a">3a</a> monokai es la elección adulta si esto va a vivir ocho horas al lado del editor, y <a href="#3l">3l</a> ecualizador es la idea más nueva de las doce — vale prototiparla aunque no gane, porque convierte el label en un instrumento en vez de un cartel.</div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentación&quot;}}">
+class Component extends DCLogic {
+  state = { playing: null };
+
+  get playing() { return this.state.playing ?? this.props.motion ?? true; }
+
+  sync() {
+    document.documentElement.style.setProperty('--om-play', this.playing ? 'running' : 'paused');
+  }
+
+  componentDidMount() { this.sync(); }
+  componentDidUpdate() { this.sync(); }
+
+  chars(text, cycle) {
+    return [...text].map((t, i) => ({
+      t: t === ' ' ? '\u00A0' : t,
+      d: (-(i * cycle) / text.length).toFixed(2) + 's'
+    }));
+  }
+
+  renderVals() {
+    return {
+      line1: this.chars("YOU'VE GOT", 1.6),
+      line2: this.chars('NEWS', 1.6),
+      eq: [0, 1, 2, 3, 4, 5, 6, 7].map(i => ({
+        c: ['#FF2D6F', '#A56BFF', '#7FF9FF', '#37F5A0'][i % 4],
+        d: (-i * 0.11).toFixed(2) + 's'
+      })),
+      playLabel: this.playing ? 'PAUSAR TODO' : 'REANUDAR',
+      togglePlay: () => this.setState({ playing: !this.playing })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#05000E;color:#E7E2F5;font-family:'IBM Plex Mono',ui-monospace,monospace;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:#7FF9FF;text-decoration:none;border-bottom:1px solid rgba(127,249,255,.4)}
+  a:hover{color:#FFE600;border-bottom-color:#FFE600}
+  @keyframes omD30{0%{background-position:0 0}100%{background-position:0 -30px}}
+  @keyframes omD36{0%{background-position:0 0}100%{background-position:0 -36px}}
+  @keyframes omD58{0%{background-position:0 0}100%{background-position:0 -58px}}
+  @keyframes omD72{0%{background-position:0 0}100%{background-position:0 -72px}}
+  @keyframes omD120{0%{background-position:0 0}100%{background-position:0 -120px}}
+  @keyframes omSkew{0%,100%{transform:skewX(0deg) translateX(0)}50%{transform:skewX(-2.5deg) translateX(.5px)}}
+  @keyframes omGhostSoft{0%,100%{transform:translateX(1px)}50%{transform:translateX(-1px)}}
+  @keyframes omGhost3{0%,100%{transform:translateX(3px)}50%{transform:translateX(-3px)}}
+  @keyframes omGhost6{0%,100%{transform:translateX(6px)}50%{transform:translateX(-6px)}}
+</style>
+</helmet>
+
+<section style="padding:56px 60px 110px;display:flex;flex-direction:column;gap:58px">
+
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:700px">
+      <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#7FF9FF">Turno 5 · el mix como sistema</div>
+      <h1 style="margin:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:38px;line-height:1.22;color:#fff;text-shadow:4px 4px 0 #FF2D6F,8px 8px 0 rgba(43,184,255,.5)">EL MIX,<br>APLICADO A TODO</h1>
+      <p style="margin:0;font-size:13px;line-height:1.85;color:#8E86A8">4b funcionaba porque sus tres capas atacan cosas distintas y no se pisan. Para que eso siga siendo cierto a 46 px, en un gráfico de barras o en always-on, hacen falta dos reglas de escala que a 7 px no se notaban. Seis experimentos, cada uno con el error al lado de la corrección.</p>
+    </div>
+    <button onClick="{{ togglePlay }}" style="font-family:'Silkscreen',monospace;font-size:11px;color:#05000E;background:#7FF9FF;border:0;padding:11px 16px;cursor:pointer;box-shadow:4px 4px 0 #FF2D6F;height:fit-content" style-hover="background:#FFE600;box-shadow:4px 4px 0 #A56BFF">{{ playLabel }}</button>
+  </div>
+
+  <!-- EL PRINCIPIO -->
+  <div style="display:flex;gap:20px;flex-wrap:wrap">
+    <div style="width:296px;border:2px solid #7FF9FF;box-shadow:5px 5px 0 rgba(127,249,255,.22);padding:18px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-family:'Silkscreen',monospace;font-size:10px;color:#7FF9FF">CAPA 1 · RELLENO</div>
+      <div style="font-size:12px;line-height:1.8;color:#E7E2F5">Un degradé vertical de seis tonos que deriva hacia arriba dentro del glifo. Nunca detrás: dentro.</div>
+      <div style="font-size:11px;line-height:1.9;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:10px">Alto de baldosa = <strong style="color:#FFE600">1,6 ×</strong> el alto del bloque.<br>Velocidad = <strong style="color:#FFE600">10 px/s</strong>, siempre.</div>
+    </div>
+    <div style="width:296px;border:2px solid #FF2D6F;box-shadow:5px 5px 0 rgba(255,45,111,.22);padding:18px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-family:'Silkscreen',monospace;font-size:10px;color:#FF2D6F">CAPA 2 · FANTASMA</div>
+      <div style="font-size:12px;line-height:1.8;color:#E7E2F5">Dos copias magenta y cian que se cruzan detrás, en un ciclo más lento que el relleno.</div>
+      <div style="font-size:11px;line-height:1.9;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:10px">Desplazamiento = <strong style="color:#FFE600">tamaño ÷ 16</strong>, con piso de 1 px.<br>Opacidad 0,75.</div>
+    </div>
+    <div style="width:296px;border:2px solid #A56BFF;box-shadow:5px 5px 0 rgba(165,107,255,.22);padding:18px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-family:'Silkscreen',monospace;font-size:10px;color:#A56BFF">CAPA 3 · GEOMETRÍA</div>
+      <div style="font-size:12px;line-height:1.8;color:#E7E2F5">Una inclinación de 2,5° cada 3,4 s sobre el bloque entero.</div>
+      <div style="font-size:11px;line-height:1.9;color:#8E86A8;border-top:1px solid #2A1F44;padding-top:10px">Sólo sobre <strong style="color:#FFE600">un elemento por pantalla</strong>: el héroe. Nunca sobre contenedores ni chrome.</div>
+    </div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,#2A1F44,transparent)"></div>
+
+  <!-- EXP 1 · ESCALA -->
+  <div id="5a" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 1 · ESCALA</div><div style="font-size:12px;color:#8E86A8">¿la baldosa de 30 px sirve para el número de 46 px del reloj?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">MAL · BALDOSA FIJA 30 PX</div>
+        <div style="height:120px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 30px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD30 3s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Un ciclo y medio de arcoíris dentro de una sola cifra. Vuelve a leerse como bandas, que es justo lo que 4b había resuelto.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · BALDOSA 72 PX = 1,6 ×</div>
+        <div style="height:120px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 72px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD72 7.2s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Casi un color por instante, igual que el wordmark de 7 px. La cifra respira sin dejar de ser una cifra.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">LA MISMA REGLA, TRES TAMAÑOS</div>
+        <div style="height:120px;background:#05000E;border:1px solid #2A1F44;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:7px;line-height:9.5px;text-align:center;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 30px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD30 3s linear infinite;animation-play-state:var(--om-play,running)">YOU'VE GOT<br>NEWS</div>
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:22px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 36px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD36 3.6s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running)">12.08</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Barra 30/3 s · complicación 36/3,6 s · popover 58/5,8 s. La velocidad en píxeles por segundo no cambia nunca.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXP 2 · FANTASMA -->
+  <div id="5b" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 2 · FANTASMA</div><div style="font-size:12px;color:#8E86A8">¿el desplazamiento de 1 px crece con el tipo o se queda?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">1 PX · FIJO</div>
+        <div style="height:110px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="position:relative">
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#FF2D6F;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#7FF9FF;opacity:.75;animation:omGhostSoft 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:relative;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 72px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD72 7.2s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Desaparece. A 46 px un píxel es el 2 % del glifo: no hay aberración, hay un borde sucio.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">3 PX · TAMAÑO ÷ 16</div>
+        <div style="height:110px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="position:relative">
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#FF2D6F;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#7FF9FF;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:relative;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 72px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD72 7.2s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Misma proporción que 1 px sobre 7 px de tipo. Se lee como señal mal sintonizada, no como error de render.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">6 PX · PROPORCIONAL PURO</div>
+        <div style="height:110px;background:#05000E;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="position:relative">
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#FF2D6F;opacity:.75;animation:omGhost6 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;color:#7FF9FF;opacity:.75;animation:omGhost6 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:relative;font-family:'Silkscreen',monospace;font-weight:700;font-size:46px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 72px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD72 7.2s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Tres cifras distintas compitiendo. El saldo es el dato más importante de la app: acá deja de poder leerse de un vistazo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXP 3 · GRÁFICO -->
+  <div id="5c" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 3 · EL GRÁFICO</div><div style="font-size:12px;color:#8E86A8">catorce barras: ¿catorce degradés o un solo campo?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">MAL · CADA BARRA SU DEGRADÉ</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:16px;display:flex;align-items:flex-end;gap:8px;height:56px">
+          <sc-for list="{{ chartNaive }}" as="b" hint-placeholder-count="14">
+            <div style="width:12px;min-height:3px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running);height:{{ b.h }}"></div>
+          </sc-for>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Cada barra arranca su arcoíris desde su propio borde superior, así que las cortas son todas magenta y las largas todas violetas. El color pasa a codificar la altura — un dato que ya está codificado.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · CAMPO COMPARTIDO</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:16px;display:flex;align-items:flex-end;gap:8px;height:56px">
+          <sc-for list="{{ chartShared }}" as="b" hint-placeholder-count="14">
+            <div style="width:12px;min-height:3px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;animation:omD58 5.8s linear infinite;animation-delay:{{ b.d }};animation-play-state:var(--om-play,running);height:{{ b.h }}"></div>
+          </sc-for>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Un retraso negativo por barra, proporcional a su distancia al piso, mete a las catorce en el mismo sistema de coordenadas. El degradé atraviesa el gráfico como una sola lámina y la altura vuelve a ser lo único que dice altura.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">LA CUENTA</div>
+        <div style="background:#0B0018;border:1px solid #2A1F44;padding:16px;font-size:11px;line-height:2;color:#8E86A8">
+          <div style="color:#7FF9FF">retraso = −((H − h) mod T) ÷ T × D</div>
+          <div style="border-top:1px solid #2A1F44;margin-top:10px;padding-top:10px">H · alto del gráfico &nbsp;56<br>T · baldosa &nbsp;58<br>D · ciclo &nbsp;5,8 s<br>h · alto de la barra</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Sirve para cualquier grupo de elementos que compartan un borde: barras, segmentos del selector de ventana, los bordes de las tarjetas de reglas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXP 4 · GEOMETRÍA -->
+  <div id="5d" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 4 · GEOMETRÍA</div><div style="font-size:12px;color:#8E86A8">¿hasta dónde sube la inclinación?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:340px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">MAL · SOBRE EL CONTENEDOR</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;overflow:hidden">
+          <div style="padding:16px;display:flex;flex-direction:column;gap:8px;animation:omSkew 3.4s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+            <div style="display:flex;align-items:center;gap:7px;font-family:'Silkscreen',monospace;font-size:8.5px"><div style="width:8px;height:8px;background:#7FF9FF"></div><span style="color:#fff">CONECTADO</span><div style="flex:1"></div><span style="color:rgba(255,255,255,.5)">HACE 14 S</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#fff">12.08</div>
+              <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#7FF9FF">RESTANTES</div>
+            </div>
+            <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.7)">DE $25.00 · 24 H $3.41</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Se inclinan el estado, la etiqueta y el pie junto con la cifra. Nada tiene un borde en el que apoyarse y el bloque entero parece estar cayéndose.</div>
+      </div>
+      <div style="width:340px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · SÓLO EL HÉROE</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;overflow:hidden">
+          <div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:7px;font-family:'Silkscreen',monospace;font-size:8.5px"><div style="width:8px;height:8px;background:#7FF9FF"></div><span style="color:#fff">CONECTADO</span><div style="flex:1"></div><span style="color:rgba(255,255,255,.5)">HACE 14 S</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <div style="position:relative;animation:omSkew 3.4s ease-in-out infinite;animation-play-state:var(--om-play,running)">
+                <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#FF2D6F;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)">12.08</div>
+                <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#7FF9FF;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)">12.08</div>
+                <div style="position:relative;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running)">12.08</div>
+              </div>
+              <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#7FF9FF">RESTANTES</div>
+            </div>
+            <div style="font-family:'Silkscreen',monospace;font-size:8px;line-height:1.9;color:rgba(255,255,255,.7)">DE $25.00 · 24 H $3.41</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">La cifra se mueve contra un marco quieto. El contraste entre lo que vibra y lo que no es lo que hace legible el movimiento — si vibra todo, no vibra nada.</div>
+      </div>
+      <div style="width:280px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">UN HÉROE POR PANTALLA</div>
+        <div style="background:#0B0018;border:1px solid #2A1F44;padding:16px;font-size:11.5px;line-height:2;color:#8E86A8">
+          <div>barra de menú → el wordmark</div>
+          <div>banner del reloj → el saldo</div>
+          <div>long look → el saldo</div>
+          <div>complicación → el saldo</div>
+          <div>popover → el saldo</div>
+          <div style="color:#5E5580">always-on → ninguno</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Que sea siempre el mismo dato no es casualidad: el saldo es lo único que la app existe para decir.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXP 5 · SUPERFICIES PLANAS -->
+  <div id="5e" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 5 · SUPERFICIES PLANAS</div><div style="font-size:12px;color:#8E86A8">botones, marcos y bordes: ¿el relleno también?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:230px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">MAL · BOTÓN RELLENO</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:18px;display:flex;align-items:center;justify-content:center;height:70px">
+          <div style="background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running);color:#05000E;font-family:'Silkscreen',monospace;font-size:10px;padding:11px 18px">RECARGAR</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">El texto negro pierde contraste cada vez que pasa el magenta. Un botón no puede tener momentos en los que no se lee.</div>
+      </div>
+      <div style="width:230px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · SÓLO EL BORDE</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:18px;display:flex;align-items:center;justify-content:center;height:70px">
+          <div style="padding:2px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running)">
+            <div style="background:#05000E;color:#fff;font-family:'Silkscreen',monospace;font-size:10px;padding:9px 16px">RECARGAR</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">El degradé vive en un marco de 2 px y el fondo del botón queda sólido. Contraste constante, mismo mecanismo.</div>
+      </div>
+      <div style="width:230px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · MARCO DE LA ALERTA</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:18px;display:flex;align-items:center;justify-content:center;height:70px">
+          <div style="padding:2px;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running);box-shadow:4px 4px 0 rgba(255,45,111,.55)">
+            <div style="background:#0B0018;padding:9px 12px;display:flex;flex-direction:column;gap:4px">
+              <div style="font-family:'Silkscreen',monospace;font-size:8.5px;color:#FFE600">DOLAR 12 CONSUMIDO</div>
+              <div style="font-family:'Silkscreen',monospace;font-size:7.5px;color:rgba(255,255,255,.6)">24 H $3.41</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Acá el marco reemplaza al cian fijo de v2. El color de la regla pasa a ser la sombra desplazada.</div>
+      </div>
+      <div style="width:230px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">NUNCA · TEXTO DE LECTURA</div>
+        <div style="background:#05000E;border:1px solid #2A1F44;padding:18px;display:flex;align-items:center;justify-content:center;height:70px">
+          <div style="font-size:11px;line-height:1.7;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running)">Se notifica cada vez que el consumo total cruza un dólar entero.</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Frases enteras, etiquetas de formulario, ayuda: siempre planas. El mix es para datos y marcas, nunca para lo que hay que leer palabra por palabra.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXP 6 · ALWAYS-ON -->
+  <div id="5f" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">EXPERIMENTO 6 · ALWAYS-ON</div><div style="font-size:12px;color:#8E86A8">al 42 % de brillo, ¿qué capa sobrevive?</div></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#FF2D6F">MAL · LAS TRES CAPAS ATENUADAS</div>
+        <div style="height:110px;background:#000;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="opacity:.42;position:relative">
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#FF2D6F;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:absolute;inset:0;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#7FF9FF;opacity:.75;animation:omGhost3 2.1s ease-in-out infinite -1.05s;animation-play-state:var(--om-play,running)">$12.08</div>
+            <div style="position:relative;font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;background-image:linear-gradient(180deg,#FF2D6F 0%,#FF8A00 17%,#FFE600 34%,#37F5A0 50%,#7FF9FF 67%,#A56BFF 84%,#FF2D6F 100%);background-size:100% 58px;-webkit-background-clip:text;background-clip:text;color:transparent;animation:omD58 5.8s linear infinite;animation-play-state:var(--om-play,running)">$12.08</div>
+          </div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">El magenta al 42 % sobre negro cae por debajo del piso de contraste, así que la cifra desaparece y reaparece sola. Además las tres animaciones siguen corriendo: es la pantalla que tiene que gastar menos batería.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#37F5A0">BIEN · COLAPSA A UNA CAPA</div>
+        <div style="height:110px;background:#000;border:1px solid #2A1F44;display:flex;align-items:center;justify-content:center">
+          <div style="font-family:'Silkscreen',monospace;font-weight:700;font-size:36px;line-height:1;color:#7FF9FF;opacity:.55">$12.08</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Cian plano al 55 %, sin fantasma, sin deriva, sin inclinación. El mix no se atenúa: se apaga y deja el dato. Al volver el brillo, las tres capas entran de nuevo.</div>
+      </div>
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Silkscreen',monospace;font-size:9px;color:#5E5580">EL INTERRUPTOR</div>
+        <div style="background:#0B0018;border:1px solid #2A1F44;padding:16px;font-size:11.5px;line-height:2;color:#8E86A8">
+          <div>always-on → capa 1 sola, plana</div>
+          <div>reduce motion → capa 1 sola, plana</div>
+          <div>batería baja → capa 1 sola, plana</div>
+          <div style="border-top:1px solid #2A1F44;margin-top:10px;padding-top:10px;color:#7FF9FF">un solo interruptor para los tres</div>
+        </div>
+        <div style="font-size:11px;line-height:1.7;color:#8E86A8">Los tres casos piden exactamente lo mismo, así que conviene que sea un único estado en el modelo y no tres ramas en la vista.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,#2A1F44,transparent)"></div>
+
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:820px">
+    <div style="font-family:'Silkscreen',monospace;font-size:16px;color:#FFE600">LO QUE QUEDA POR DECIDIR</div>
+    <div style="font-size:12.5px;line-height:1.9;color:#8E86A8">Los seis experimentos resuelven cómo se comporta el mix, no dónde más aparece. Las tres que tengo en duda: si el selector de ventana (1 h / 12 h / 24 h…) usa el campo compartido de <a href="#5c">5c</a> en sus cinco segmentos o se queda plano; si el reloj puede permitirse las tres capas en el banner sabiendo que la pantalla se prende dos segundos; y si el degradé del marco debería ir más lento cuando el saldo baja de $5 — el mismo mecanismo diciendo algo, en vez de decorando. Decime por cuál seguimos.</div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Presentación&quot;}}">
+class Component extends DCLogic {
+  state = { playing: null };
+
+  get playing() { return this.state.playing ?? this.props.motion ?? true; }
+
+  sync() {
+    document.documentElement.style.setProperty('--om-play', this.playing ? 'running' : 'paused');
+  }
+
+  componentDidMount() { this.sync(); }
+  componentDidUpdate() { this.sync(); }
+
+  renderVals() {
+    const vals = [1.2, 0.4, 2.1, 3.0, 0.9, 1.8, 4.2, 2.6, 0.3, 1.1, 3.4, 2.2, 1.6, 3.41];
+    const max = 4.2, H = 56, T = 58, D = 5.8;
+    const heights = vals.map(v => Math.max(3, Math.round(v / max * H)));
+
+    return {
+      chartNaive: heights.map(h => ({ h: h + 'px' })),
+      chartShared: heights.map(h => ({
+        h: h + 'px',
+        d: (-(((H - h) % T) / T) * D).toFixed(2) + 's'
+      })),
+      playLabel: this.playing ? 'PAUSAR TODO' : 'REANUDAR',
+      togglePlay: () => this.setState({ playing: !this.playing })
+    };
+  }
+}
+</script>
+</body>
+</html>
